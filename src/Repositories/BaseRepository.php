@@ -6,7 +6,7 @@
  * Time: 11:07 PM
  */
 
-namespace NicoSystem\Repositories;
+namespace Ensue\NicoSystem\Repositories;
 
 use App\System\AppBaseModel;
 use App\System\AppConstants;
@@ -16,10 +16,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
-use NicoSystem\Exceptions\NicoBadRequestException;
-use NicoSystem\Foundation\Database\BaseModel;
-use NicoSystem\Foundation\Status;
-use NicoSystem\Interfaces\BasicCrudInterface;
+use Ensue\NicoSystem\Exceptions\NicoBadRequestException;
+use Ensue\NicoSystem\Foundation\Database\BaseModel;
+use Ensue\NicoSystem\Foundation\Status;
+use Ensue\NicoSystem\Interfaces\BasicCrudInterface;
 
 abstract class BaseRepository implements BasicCrudInterface
 {
@@ -30,7 +30,7 @@ abstract class BaseRepository implements BasicCrudInterface
 
     /**
      * BaseRepository constructor.
-     * @param \NicoSystem\Foundation\Database\BaseModel $model
+     * @param \Ensue\NicoSystem\Foundation\Database\BaseModel $model
      */
     public function __construct(protected BaseModel $model)
     {

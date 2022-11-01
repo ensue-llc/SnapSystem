@@ -1,6 +1,6 @@
 <?php
 
-namespace NicoSystem\Interfaces;
+namespace Ensue\NicoSystem\Interfaces;
 
 /**
  * Created by PhpStorm.

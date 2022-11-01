@@ -1,10 +1,10 @@
 {
-    "name": "lyb/ensue-system",
+    "name": "ensue/nico-system",
     "description": "Base system architecture for the laravel project",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Lyb\\EnsueSystem\\": "src/"
+            "Ensue\\NicoSystem\\": "src/"
         }
     },
     "authors": [
@@ -21,5 +21,7 @@
             "email": "bipin.maharjan@ensue.us"
         }
     ],
-    "require": {}
+    "require": {
+
+    }
 }

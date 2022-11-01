@@ -6,7 +6,7 @@
  * Time: 5:38 PM
  */
 
-namespace NicoSystem\Foundation\Database;
+namespace Ensue\NicoSystem\Foundation\Database;
 
 
 use Illuminate\Database\Schema\Blueprint;

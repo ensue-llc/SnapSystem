@@ -6,15 +6,15 @@
  * Time: 11:48 PM
  */
 
-namespace NicoSystem\Requests;
+namespace Ensue\NicoSystem\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use NicoSystem\Foundation\NicoResponseTraits;
+use Ensue\NicoSystem\Foundation\NicoResponseTraits;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class NicoRequest
- * @package NicoSystem\Requests
+ * @package Ensue\NicoSystem\Requests
  */
 class NicoRequest extends FormRequest
 {

@@ -1,14 +1,19 @@
 <?php
 
-namespace Lyb\EnsueSystem;
+namespace Ensue\NicoSystem;
 
 use Illuminate\Support\Facades\File;
-use Lyb\EnsueSystem\Validation\ValidationServiceProvider;
-use Illuminate\Support\ServiceProvider as BaseProvider;
+use Ensue\NicoSystem\Validation\ValidationServiceProvider;
 
-class ServiceProvider extends BaseProvider
+/**
+ * Created by PhpStorm.
+ * User: Amar
+ * Date: 12/29/2016
+ * Time: 10:17 PM
+ */
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    public function register(): void
+    public function register()
     {
         $this->registerModulesProviders();
 

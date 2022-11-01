@@ -6,7 +6,7 @@
  * Time: 12:23 AM
  */
 
-namespace NicoSystem\Foundation;
+namespace Ensue\NicoSystem\Foundation;
 
 use App\System\AppConstants;
 use Illuminate\Http\JsonResponse;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Trait NicoResponseTraits
- * @package NicoSystem\Foundation
+ * @package Ensue\NicoSystem\Foundation
  */
 trait NicoResponseTraits
 {

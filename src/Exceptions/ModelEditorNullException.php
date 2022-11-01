@@ -6,14 +6,14 @@
  * Time: 5:18 PM
  */
 
-namespace App\NicoSystem\src\Exceptions;
+namespace App\Ensue\NicoSystem\src\Exceptions;
 
 
-use NicoSystem\Exceptions\NicoException;
+use Ensue\NicoSystem\Exceptions\NicoException;
 
 /**
  * Class ModelEditorNullException
- * @package App\NicoSystem\src\Exceptions
+ * @package App\Ensue\NicoSystem\src\Exceptions
  */
 class ModelEditorNullException extends NicoException
 {

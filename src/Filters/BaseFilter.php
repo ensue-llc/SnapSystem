@@ -1,11 +1,18 @@
 <?php
-namespace NicoSystem\Filters;
+/**
+ * Created by PhpStorm.
+ * User: Rocco
+ * Date: 10/25/2018
+ * Time: 3:59 PM
+ */
+
+namespace Ensue\NicoSystem\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class BaseFilter
- * @package NicoSystem\Filters
+ * @package Ensue\NicoSystem\Filters
  */
 abstract class BaseFilter
 {
@@ -45,14 +52,14 @@ abstract class BaseFilter
     /**
      * @param string $keyword
      */
-    abstract public function keyword(string $keyword): void;
+    public abstract function keyword(string $keyword): void;
 
     /**
      * @param string $status
      */
     public function status(string $status = ''): void
     {
-        if (!is_null($status)) {
+        if ($status != '' || $status != null) {
             $this->builder->where('status', $status);
         }
     }

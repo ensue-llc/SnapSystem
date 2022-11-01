@@ -6,7 +6,7 @@
  * Time: 11:04 PM
  */
 
-namespace NicoSystem\Foundation\Database;
+namespace Ensue\NicoSystem\Foundation\Database;
 
 
 use Closure;
@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
-use NicoSystem\Exceptions\DataAssertionException;
-use NicoSystem\Foundation\Database\Relation\HasManyExtended;
-use NicoSystem\Foundation\Status;
+use Ensue\NicoSystem\Exceptions\DataAssertionException;
+use Ensue\NicoSystem\Foundation\Database\Relation\HasManyExtended;
+use Ensue\NicoSystem\Foundation\Status;
 
 abstract class BaseModel extends Model
 {

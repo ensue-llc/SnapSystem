@@ -1,20 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 10/31/2017
- * Time: 7:54 PM
- */
 
-namespace NicoSystem\Commands;
-
+namespace Ensue\NicoSystem\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class AngularAppDeploy
- * @package NicoSystem\Commands
+ * @package Ensue\NicoSystem\Commands
  */
 class AngularAppDeploy extends Command
 {

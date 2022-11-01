@@ -1,7 +1,7 @@
 <?php
 namespace App\{moduleContainer}\{{module}}\Requests;
 
-use NicoSystem\Requests\NicoRequest;
+use Ensue\NicoSystem\Requests\NicoRequest;
 
 /**
  * Class {module}UpdateRequest

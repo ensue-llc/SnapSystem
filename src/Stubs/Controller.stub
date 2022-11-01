@@ -6,8 +6,8 @@ use App\{moduleContainer}\{{module}}\Interfaces\{module}Interface;
 use App\{moduleContainer}\{{module}}\Requests\{module}CreateRequest;
 use App\{moduleContainer}\{{module}}\Requests\{module}UpdateRequest;
 use Illuminate\Http\JsonResponse;
-use NicoSystem\Controllers\BaseController;
-use NicoSystem\Requests\NicoRequest;
+use Ensue\NicoSystem\Controllers\BaseController;
+use Ensue\NicoSystem\Requests\NicoRequest;
 
 /**
  * Class {{module}}Controller

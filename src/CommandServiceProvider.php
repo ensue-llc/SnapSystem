@@ -1,10 +1,10 @@
 <?php
 
-namespace Lyb\EnsueSystem;
+namespace Ensue\NicoSystem;
 
 use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
-use Lyb\EnsueSystem\Commands\AngularAppDeploy;
-use Lyb\EnsueSystem\Commands\ModuleGenerateCommand;
+use Ensue\NicoSystem\Commands\AngularAppDeploy;
+use Ensue\NicoSystem\Commands\ModuleGenerateCommand;
 
 class CommandServiceProvider extends AbstractServiceProvider
 {

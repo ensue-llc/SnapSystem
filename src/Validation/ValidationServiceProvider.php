@@ -6,7 +6,7 @@
  * Time: 10:10 PM
  */
 
-namespace   NicoSystem\Validation;
+namespace   Ensue\NicoSystem\Validation;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;

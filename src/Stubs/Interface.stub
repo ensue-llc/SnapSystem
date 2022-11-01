@@ -2,7 +2,7 @@
 
 namespace App\{moduleContainer}\{{module}}\Interfaces;
 
-use NicoSystem\Interfaces\BasicCrudInterface;
+use Ensue\NicoSystem\Interfaces\BasicCrudInterface;
 
 /**
  * Interface {module}Interface

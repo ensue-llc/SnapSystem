@@ -6,7 +6,7 @@
  * Time: 10:20 PM
  */
 
-namespace NicoSystem\Commands;
+namespace Ensue\NicoSystem\Commands;
 
 
 use Illuminate\Console\Command;

@@ -6,7 +6,7 @@
  * Time: 12:46 AM
  */
 
-namespace Lyb\EnsueSystem;
+namespace Ensue\NicoSystem;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;

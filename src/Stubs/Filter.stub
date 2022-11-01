@@ -2,7 +2,7 @@
 
 namespace App\{moduleContainer}\{{module}}\Filters;
 
-use NicoSystem\Filters\BaseFilter;
+use Ensue\NicoSystem\Filters\BaseFilter;
 
 /**
  * Class {{module}}Controller

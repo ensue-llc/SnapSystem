@@ -6,11 +6,11 @@
  * Time: 10:45 PM
  */
 
-namespace NicoSystem\Foundation;
+namespace Ensue\NicoSystem\Foundation;
 
 /**
  * Class Phone
- * @package NicoSystem\Foundation
+ * @package Ensue\NicoSystem\Foundation
  */
 class Phone
 {

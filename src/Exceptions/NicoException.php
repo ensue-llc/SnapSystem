@@ -6,11 +6,11 @@
  * Time: 4:20 PM
  */
 
-namespace NicoSystem\Exceptions;
+namespace Ensue\NicoSystem\Exceptions;
 
 /**
  * Class NicoException
- * @package NicoSystem\Exceptions
+ * @package Ensue\NicoSystem\Exceptions
  */
 class NicoException extends \RuntimeException
 {
@@ -70,7 +70,7 @@ class NicoException extends \RuntimeException
     /**
      * Set response body
      * @param mixed $respBody
-     * @return \NicoSystem\Exceptions\NicoException
+     * @return \Ensue\NicoSystem\Exceptions\NicoException
      */
     public function setResponseBody(mixed $respBody): NicoException
     {

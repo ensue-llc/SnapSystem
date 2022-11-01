@@ -6,14 +6,14 @@
  * Time: 10:08 PM
  */
 
-namespace NicoSystem\Validation;
+namespace Ensue\NicoSystem\Validation;
 
 
 use Illuminate\Validation\Validator;
 
 /**
  * Class NicoValidation
- * @package NicoSystem\Validation
+ * @package Ensue\NicoSystem\Validation
  */
 class NicoValidation extends Validator
 {

@@ -8,7 +8,7 @@
 
 namespace App\{system}\{module}\Database\Models;
 
-use NicoSystem\Foundation\Database\BaseModel;
+use Ensue\NicoSystem\Foundation\Database\BaseModel;
 
 class {module} extends BaseModel
 {

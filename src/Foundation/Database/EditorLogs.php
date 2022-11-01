@@ -6,10 +6,10 @@
  * Time: 4:31 PM
  */
 
-namespace NicoSystem\Foundation\Database;
+namespace Ensue\NicoSystem\Foundation\Database;
 
 
-use App\NicoSystem\src\Exceptions\ModelEditorNullException;
+use App\Ensue\NicoSystem\src\Exceptions\ModelEditorNullException;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

@@ -6,7 +6,7 @@
  * Time: 10:18 PM
  */
 
-namespace NicoSystem\Foundation\Database\Relation;
+namespace Ensue\NicoSystem\Foundation\Database\Relation;
 
 
 use Illuminate\Database\Eloquent\Builder;

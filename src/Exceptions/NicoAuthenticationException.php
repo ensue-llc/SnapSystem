@@ -6,11 +6,11 @@
  * Time: 4:46 PM
  */
 
-namespace NicoSystem\Exceptions;
+namespace Ensue\NicoSystem\Exceptions;
 
 /**
  * Class NicoAuthenticationException
- * @package NicoSystem\Exceptions
+ * @package Ensue\NicoSystem\Exceptions
  */
 class NicoAuthenticationException extends NicoException
 {

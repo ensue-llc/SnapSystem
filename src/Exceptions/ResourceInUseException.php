@@ -6,13 +6,13 @@
  * Time: 2:01 PM
  */
 
-namespace NicoSystem\Exceptions;
+namespace Ensue\NicoSystem\Exceptions;
 
 use App\System\AppConstants;
 
 /**
  * Class ResourceInUseException
- * @package NicoSystem\Exceptions
+ * @package Ensue\NicoSystem\Exceptions
  */
 class ResourceInUseException extends NicoException
 {

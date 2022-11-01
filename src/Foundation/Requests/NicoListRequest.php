@@ -1,10 +1,10 @@
 <?php
 
 
-namespace NicoSystem\Foundation\Requests;
+namespace Ensue\NicoSystem\Foundation\Requests;
 
 
-use NicoSystem\Requests\NicoRequest;
+use Ensue\NicoSystem\Requests\NicoRequest;
 
 class NicoListRequest extends NicoRequest
 {

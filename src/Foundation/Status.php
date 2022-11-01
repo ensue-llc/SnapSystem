@@ -1,22 +1,30 @@
 <?php
-namespace NicoSystem\Foundation;
+/**
+ * Created by PhpStorm.
+ * User: Amar
+ * Date: 12/30/2016
+ * Time: 11:26 PM
+ */
+
+namespace Ensue\NicoSystem\Foundation;
+
 
 class Status
 {
     /**
      * The suspended status
      */
-    public const STATUS_SUSPENDED = 0;
+    const STATUS_SUSPENDED = 0;
 
     /**
      * The unpublished status
      */
-    public const STATUS_UNPUBLISHED = 1;
+    const STATUS_UNPUBLISHED = 1;
 
     /**
      * The published status
      */
-    public const STATUS_PUBLISHED = 2;
+    const STATUS_PUBLISHED = 2;
 
     /**
      * @param bool $withEmpty defaults to false. If true an empty option is added at the top
@@ -41,9 +49,6 @@ class Status
      */
     public static function options(): array
     {
-        return [
-            self::STATUS_UNPUBLISHED,
-            self::STATUS_PUBLISHED
-        ];
+        return [static::STATUS_UNPUBLISHED, static::STATUS_PUBLISHED];
     }
 }

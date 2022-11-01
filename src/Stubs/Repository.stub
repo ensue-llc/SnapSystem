@@ -5,7 +5,7 @@ namespace App\{moduleContainer}\{{module}}\Repositories;
 use App\{moduleContainer}\{{module}}\Filters\{{module}}Filter;
 use App\{moduleContainer}\{{module}}\Interfaces\{module}Interface;
 use App\{moduleContainer}\{{module}}\Database\Models\{module};
-use NicoSystem\Repositories\BaseRepository;
+use Ensue\NicoSystem\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
