@@ -1,0 +1,14 @@
+<?php
+
+namespace App\{moduleContainer}\{{module}}\Interfaces;
+
+use NicoSystem\Interfaces\BasicCrudInterface;
+
+/**
+ * Interface {module}Interface
+ * @package App\{moduleContainer}\{{module}}\Interfaces
+ */
+interface {module}Interface extends BasicCrudInterface
+{
+
+}

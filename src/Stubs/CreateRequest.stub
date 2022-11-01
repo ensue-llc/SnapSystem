@@ -1,0 +1,13 @@
+<?php
+namespace App\{moduleContainer}\{{module}}\Requests;
+
+use NicoSystem\Requests\NicoRequest;
+
+/**
+ * Class {module}CreateRequest
+ * @package App\{moduleContainer}\{{module}}\Requests
+ */
+class {module}CreateRequest extends NicoRequest
+{
+
+}

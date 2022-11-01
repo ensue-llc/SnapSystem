@@ -1,0 +1,25 @@
+{
+    "name": "lyb/ensue-system",
+    "description": "Base system architecture for the laravel project",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Lyb\\EnsueSystem\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Amar Lamichhane",
+            "email": "amar.lamichhane@ensue.us"
+        },
+        {
+            "name": "Shiva Thapa",
+            "email": "shiva.thapa@ensue.us"
+        },
+        {
+            "name": "Bipin Maharjan",
+            "email": "bipin.maharjan@ensue.us"
+        }
+    ],
+    "require": {}
+}
