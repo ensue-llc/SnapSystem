@@ -8,7 +8,7 @@
 
 namespace Ensue\NicoSystem\Exceptions;
 
-use App\System\AppConstants;
+use Ensue\NicoSystem\Constants\AppConstants;
 
 /**
  * Class ResourceInUseException

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 2/16/2017
- * Time: 10:18 PM
- */
 
 namespace Ensue\NicoSystem\Foundation\Database\Relation;
-
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -31,7 +24,7 @@ class HasManyExtended extends HasMany
      * @param string $localKey
      * @param array $extraKeyChecks
      */
-    public function __construct(Builder $query, Model $parent, $foreignKey, $localKey, $extraKeyChecks = [])
+    public function __construct(Builder $query, Model $parent, $foreignKey, $localKey, array $extraKeyChecks = [])
     {
         $this->extraKeys = $extraKeyChecks;
         parent::__construct($query, $parent, $foreignKey, $localKey);
@@ -41,7 +34,7 @@ class HasManyExtended extends HasMany
      * Match the eagerly loaded results to their many parents.
      *
      * @param array $models
-     * @param \Illuminate\Database\Eloquent\Collection $results
+     * @param Collection $results
      * @param string $relation
      * @param string $type
      * @return array
@@ -70,9 +63,9 @@ class HasManyExtended extends HasMany
     /**
      * @param $value
      * @param $parent
-     * @return mixed
+     * @return array
      */
-    protected function checkForExtraQueryParameters($value, $parent): mixed
+    protected function checkForExtraQueryParameters($value, $parent): array
     {
         if (empty($this->extraKeys)) {
             return $value;
@@ -90,7 +83,6 @@ class HasManyExtended extends HasMany
             if ($put) {
                 $ret[] = $v;
             }
-
         }
         return $ret;
     }

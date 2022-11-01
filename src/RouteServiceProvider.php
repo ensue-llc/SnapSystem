@@ -1,18 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/30/2016
- * Time: 12:00 AM
- */
 
 namespace Ensue\NicoSystem;
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseProvider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-class RouteServiceProvider extends \App\Providers\RouteServiceProvider
+class RouteServiceProvider extends BaseProvider
 {
     /**
      * @var array
@@ -29,7 +24,7 @@ class RouteServiceProvider extends \App\Providers\RouteServiceProvider
         $this->init();
     }
 
-    protected function init()
+    protected function init(): void
     {
         $modulePath = $this->app['config']->get('nicoSystem.module');
         if (!$modulePath) {
@@ -56,12 +51,7 @@ class RouteServiceProvider extends \App\Providers\RouteServiceProvider
         }
     }
 
-    public function register()
-    {
-        parent::register();
-    }
-
-    public function boot()
+    public function boot(): void
     {
         $this->mapApiRoutes();
         $this->mapWebRoutes();
@@ -75,7 +65,7 @@ class RouteServiceProvider extends \App\Providers\RouteServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiRoutes(): void
     {
         foreach ($this->modules as $module) {
             if ($module->hasApi) {
@@ -87,9 +77,7 @@ class RouteServiceProvider extends \App\Providers\RouteServiceProvider
                     require($module->routePath . "/api.php");
                 });
             }
-
         }
-
     }
 
     /**
@@ -99,18 +87,17 @@ class RouteServiceProvider extends \App\Providers\RouteServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapWebRoutes(): void
     {
         foreach ($this->modules as $module) {
             if ($module->hasWeb) {
                 Route::group([
                     'middleware' => 'web',
                     'namespace' => $module->namespace,
-                ], function ($router) use ($module) {
+                ], static function ($router) use ($module) {
                     require($module->routePath . "/web.php");
                 });
             }
-
         }
     }
 }

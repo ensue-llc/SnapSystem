@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/30/2016
- * Time: 11:07 PM
- */
 
 namespace Ensue\NicoSystem\Repositories;
 
-use App\System\AppBaseModel;
-use App\System\AppConstants;
+use Ensue\NicoSystem\Constants\AppConstants;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -98,7 +91,7 @@ abstract class BaseRepository implements BasicCrudInterface
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     protected function getQuery(): Builder
     {
@@ -108,7 +101,7 @@ abstract class BaseRepository implements BasicCrudInterface
     /**
      * @param Builder $builder
      */
-    public abstract function getFilter(Builder $builder);
+    abstract public function getFilter(Builder $builder);
 
     /**
      * @param Builder $builder

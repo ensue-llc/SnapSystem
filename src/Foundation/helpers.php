@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/30/2016
- * Time: 11:40 PM
- */
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
@@ -49,9 +44,9 @@ if (!function_exists('nico_trans')) {
      * @param string $id
      * @param array $parameters
      * @param string $locale
-     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null
+     * @return array|Application|Translator|string|null
      */
-    function nico_strans($id = null, $parameters = [], $locale = null): array|string|\Illuminate\Contracts\Translation\Translator|Application|null
+    function nico_strans($id = null, $parameters = [], $locale = null): array|string|Translator|Application|null
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
         $file = Arr::get($trace, 'file');

@@ -14,17 +14,17 @@ class Status
     /**
      * The suspended status
      */
-    const STATUS_SUSPENDED = 0;
+    public const STATUS_SUSPENDED = 0;
 
     /**
      * The unpublished status
      */
-    const STATUS_UNPUBLISHED = 1;
+    public const STATUS_UNPUBLISHED = 1;
 
     /**
      * The published status
      */
-    const STATUS_PUBLISHED = 2;
+    public const STATUS_PUBLISHED = 2;
 
     /**
      * @param bool $withEmpty defaults to false. If true an empty option is added at the top

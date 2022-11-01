@@ -22,7 +22,7 @@ class CommandServiceProvider extends AbstractServiceProvider
         AngularAppDeploy::class,
     ];
 
-    public function boot()
+    public function boot(): void
     {
         $this->commands($this->commands);
     }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/30/2016
- * Time: 11:48 PM
- */
 
 namespace Ensue\NicoSystem\Requests;
 
@@ -46,6 +40,5 @@ class NicoRequest extends FormRequest
     {
         return $this->responseValidationError($errors);
     }
-
 
 }

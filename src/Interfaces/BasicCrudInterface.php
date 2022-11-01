@@ -2,12 +2,6 @@
 
 namespace Ensue\NicoSystem\Interfaces;
 
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/30/2016
- * Time: 10:49 PM
- */
 interface BasicCrudInterface
 {
     /**

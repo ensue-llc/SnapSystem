@@ -14,11 +14,11 @@ namespace Ensue\NicoSystem\Foundation;
  */
 class Phone
 {
-    const FORMAT_NONE = "xxxxxxxxxx";
-    const FORMAT_AMERICAN = "(xxx)-xxx-xxxx";
-    const FORMAT_AMARICAN_W_CODE = '+x-(xxx)-xxx-xxxx';
-    const FORMAT_DASHED_10 = "xxx-xxx-xxxx";
-    const FORMAT_DASHED_10_W_CODE = "+x-xxx-xxx-xxxx";
+    public const FORMAT_NONE = "xxxxxxxxxx";
+    public const FORMAT_AMERICAN = "(xxx)-xxx-xxxx";
+    public const FORMAT_AMARICAN_W_CODE = '+x-(xxx)-xxx-xxxx';
+    public const FORMAT_DASHED_10 = "xxx-xxx-xxxx";
+    public const FORMAT_DASHED_10_W_CODE = "+x-xxx-xxx-xxxx";
 
     /**
      * Phone constructor.

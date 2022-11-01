@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 10/18/2017
- * Time: 4:20 PM
- */
 
 namespace Ensue\NicoSystem\Exceptions;
+
+use Ensue\NicoSystem\Constants\AppConstants;
 
 /**
  * Class NicoException
@@ -17,7 +13,7 @@ class NicoException extends \RuntimeException
     /**
      * @var string
      */
-    protected string $respCode = 'err_runtime_error';
+    protected string $respCode = AppConstants::ERR_RUNTIME_ERROR;
 
     /**
      * NicoException constructor.
@@ -70,7 +66,7 @@ class NicoException extends \RuntimeException
     /**
      * Set response body
      * @param mixed $respBody
-     * @return \Ensue\NicoSystem\Exceptions\NicoException
+     * @return NicoException
      */
     public function setResponseBody(mixed $respBody): NicoException
     {

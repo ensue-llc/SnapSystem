@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 10/22/2017
- * Time: 4:31 PM
- */
 
 namespace Ensue\NicoSystem\Foundation\Database;
 
-
-use App\Ensue\NicoSystem\src\Exceptions\ModelEditorNullException;
+use Ensue\NicoSystem\Exceptions\ModelEditorNullException;
+use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait EditorLogs
 {
-    use HasRelationships;
+    use HasRelationships, HasEvents;
 
     /**
      * @var bool
@@ -54,7 +48,7 @@ trait EditorLogs
     /**
      * Lets add some foundation code of this trait
      */
-    public static function bootEditorLogs()
+    public static function bootEditorLogs(): void
     {
         static::creating(function ($model) {
             $self = new static();
@@ -106,7 +100,7 @@ trait EditorLogs
      * Set editor of the model
      * @param $editor
      */
-    public function setEditor($editor)
+    public function setEditor($editor): void
     {
         $this->editor = $editor;
     }
@@ -115,7 +109,7 @@ trait EditorLogs
      * Tell what model should the model use while updating/creating/deleting.
      * Example return Auth::user()
      */
-    public abstract function editorProvider();
+    abstract public function editorProvider();
 
     /**
      * The initial creator of this model
@@ -130,7 +124,7 @@ trait EditorLogs
      * What model to use if editor log is enabled. example User::class
      * @return string
      */
-    public abstract function getEditorModelClassName(): string;
+    abstract public function getEditorModelClassName(): string;
 
     /**
      * The last latest updater of this model

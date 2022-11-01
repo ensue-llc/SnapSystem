@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 10/18/2017
- * Time: 4:48 PM
- */
 
 namespace Ensue\NicoSystem\Exceptions;
 
+use Ensue\NicoSystem\Constants\AppConstants;
 
 /**
  * Class NicoBadRequestException
@@ -17,5 +12,5 @@ class NicoBadRequestException extends NicoException
 {
     protected $code = 400;
 
-    protected string $respCode = "err_bad_request";
+    protected string $respCode = AppConstants::ERR_BAD_REQUEST;
 }

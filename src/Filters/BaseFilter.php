@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Rocco
- * Date: 10/25/2018
- * Time: 3:59 PM
- */
 
 namespace Ensue\NicoSystem\Filters;
 
@@ -52,14 +46,14 @@ abstract class BaseFilter
     /**
      * @param string $keyword
      */
-    public abstract function keyword(string $keyword): void;
+    abstract public function keyword(string $keyword): void;
 
     /**
      * @param string $status
      */
     public function status(string $status = ''): void
     {
-        if ($status != '' || $status != null) {
+        if (!is_null($status)) {
             $this->builder->where('status', $status);
         }
     }

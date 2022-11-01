@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 2/27/2017
- * Time: 5:43 PM
- */
 
 namespace Ensue\NicoSystem\Exceptions;
 

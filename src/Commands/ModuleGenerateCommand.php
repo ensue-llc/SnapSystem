@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 1/2/2017
- * Time: 10:20 PM
- */
 
 namespace Ensue\NicoSystem\Commands;
-
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

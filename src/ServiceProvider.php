@@ -2,18 +2,13 @@
 
 namespace Ensue\NicoSystem;
 
-use Illuminate\Support\Facades\File;
 use Ensue\NicoSystem\Validation\ValidationServiceProvider;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\ServiceProvider as BaseProvider;
 
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/29/2016
- * Time: 10:17 PM
- */
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class ServiceProvider extends BaseProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->registerModulesProviders();
 
@@ -31,9 +26,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     /**
      * Get providers from modules
      */
-    protected function registerModulesProviders()
+    protected function registerModulesProviders(): void
     {
-
         $modulePath = $this->app['config']->get('nicoSystem.module');
         if (!$modulePath) {
             return;
@@ -60,13 +54,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                     }
                 }
             }
-
-
         }
-
     }
 
-    public function boot()
+    public function boot(): void
     {
 
     }

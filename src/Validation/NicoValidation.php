@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 1/3/2017
- * Time: 10:08 PM
- */
 
 namespace Ensue\NicoSystem\Validation;
 

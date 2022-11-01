@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Ensue\NicoSystem\Foundation\Requests;
-
 
 use Ensue\NicoSystem\Requests\NicoRequest;
 

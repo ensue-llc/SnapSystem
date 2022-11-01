@@ -14,17 +14,17 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ViewServiceProvider extends BaseServiceProvider
 {
-    public function register()
+    public function register(): void
     {
 
     }
 
-    public function boot()
+    public function boot(): void
     {
         $this->registerViewAndTranslations();
     }
 
-    protected function registerViewAndTranslations()
+    protected function registerViewAndTranslations(): null|array
     {
         $file = new Filesystem();
         $modulePath = $this->app['config']->get('nicoSystem.module');
@@ -36,8 +36,12 @@ class ViewServiceProvider extends BaseServiceProvider
             $view = $module . "/Views";
             $trans = $module . "/Translations";
 
-            if ($file->exists($view)) $this->loadViewsFrom($view, basename($module));
-            if ($file->exists($trans)) $this->loadTranslationsFrom($trans, basename($module));
+            if ($file->exists($view)) {
+                $this->loadViewsFrom($view, basename($module));
+            }
+            if ($file->exists($trans)) {
+                $this->loadTranslationsFrom($trans, basename($module));
+            }
         }
     }
 

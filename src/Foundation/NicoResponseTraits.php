@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/31/2016
- * Time: 12:23 AM
- */
 
 namespace Ensue\NicoSystem\Foundation;
 
-use App\System\AppConstants;
+use Ensue\NicoSystem\Constants\AppConstants;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
@@ -61,9 +55,9 @@ trait NicoResponseTraits
         , 500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511);
         if (in_array($code, $status_code)) {
             return $code;
-        } else {
-            return 500;
         }
+
+        return 500;
     }
 
     /**

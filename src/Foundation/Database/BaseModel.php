@@ -8,15 +8,14 @@
 
 namespace Ensue\NicoSystem\Foundation\Database;
 
-
 use Closure;
+use Ensue\NicoSystem\Exceptions\DataAssertionException;
+use Ensue\NicoSystem\Foundation\Database\Relation\HasManyExtended;
+use Ensue\NicoSystem\Foundation\Status;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
-use Ensue\NicoSystem\Exceptions\DataAssertionException;
-use Ensue\NicoSystem\Foundation\Database\Relation\HasManyExtended;
-use Ensue\NicoSystem\Foundation\Status;
 
 abstract class BaseModel extends Model
 {
@@ -92,7 +91,7 @@ abstract class BaseModel extends Model
      * Append descending order in the query
      * @param Builder $query
      * @param string $colName
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeDescending(Builder $query, string $colName): Builder
     {
@@ -104,7 +103,7 @@ abstract class BaseModel extends Model
      * @param Builder $query
      * @param string $colName
      * @param bool $asc
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeAscending(Builder $query, string $colName, bool $asc = true): Builder
     {
@@ -119,7 +118,7 @@ abstract class BaseModel extends Model
      * Add a publish check to query
      * @param Builder $query
      * @param string $colName
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopePublished(Builder $query, string $colName = 'status'): Builder
     {
@@ -129,7 +128,7 @@ abstract class BaseModel extends Model
     /**
      * @param Builder $query
      * @param string $colName
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeUnpublished(Builder $query, string $colName = 'status'): Builder
     {
@@ -138,7 +137,7 @@ abstract class BaseModel extends Model
 
     /**
      * @param $related
-     * @param \Closure|null $closure
+     * @param Closure|null $closure
      * @param null $foreignKey
      * @param null $localKey
      * @return HasOne
@@ -162,7 +161,7 @@ abstract class BaseModel extends Model
 
     /**
      * @param $related
-     * @param \Closure|null $closure
+     * @param Closure|null $closure
      * @param null $foreignKey
      * @param null $localKey
      * @return HasManyExtended
