@@ -21,7 +21,7 @@ if (!function_exists('nico_view')) {
         //put the namespace according to the module used
         //windows check, replace all backslashes with forward slash
         $file = str_replace("\\", "/", $file);
-        $modules = app()['config']->get('nicoSystem.module');
+        $modules = app()['config']->get('nicosystem.module');
         preg_match('/' . $modules . '\/[a-zA-Z]+[a-zA-Z0-9]*\//', $file, $matches);
         if (!$matches) {
             return view($view, $data, $mergeData);
@@ -53,7 +53,7 @@ if (!function_exists('nico_trans')) {
         //put the namespace according to the module used
         //windows check, replace all backslashes with forward slash
         $file = str_replace("\\", "/", $file);
-        $modules = app()['config']->get('nicoSystem.module');
+        $modules = app()['config']->get('nicosystem.module');
         preg_match('/' . $modules . '\/[a-zA-Z]+[a-zA-Z0-9]*\//', $file, $matches);
         $match = $matches[0];
         $arr = explode('/', $match);

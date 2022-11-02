@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 12/30/2016
- * Time: 12:46 AM
- */
 
 namespace Ensue\NicoSystem;
 
@@ -12,7 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class ViewServiceProvider extends BaseServiceProvider
+class NicoViewProvider extends BaseServiceProvider
 {
     public function register(): void
     {

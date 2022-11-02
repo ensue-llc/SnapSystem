@@ -4,22 +4,22 @@ namespace Ensue\NicoSystem;
 
 use Ensue\NicoSystem\Validation\ValidationServiceProvider;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\ServiceProvider as BaseProvider;
+use Illuminate\Support\ServiceProvider;
 
-class ServiceProvider extends BaseProvider
+class NicoSystemProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/nicosystem.php', 'nicosystem');
         $this->registerModulesProviders();
 
-        $this->app->register(RouteServiceProvider::class);
-        $this->app->register(ViewServiceProvider::class);
+        $this->app->register(NicoRouteProvider::class);
+        $this->app->register(NicoViewProvider::class);
         $this->app->register(ValidationServiceProvider::class);
 
         if ($this->app->runningInConsole()) {
-            $this->app->register(CommandServiceProvider::class);
+            $this->app->register(NicoCommandProvider::class);
         }
-
         include_once(__DIR__ . '/Foundation/helpers.php');
     }
 
@@ -28,7 +28,7 @@ class ServiceProvider extends BaseProvider
      */
     protected function registerModulesProviders(): void
     {
-        $modulePath = $this->app['config']->get('nicoSystem.module');
+        $modulePath = $this->app['config']->get('nicosystem.module');
         if (!$modulePath) {
             return;
         }
@@ -59,6 +59,8 @@ class ServiceProvider extends BaseProvider
 
     public function boot(): void
     {
-
+        $this->publishes([
+            __DIR__.'/../config/nicosystem.php' => config_path('nicosystem.php'),
+        ], 'nicosystem');
     }
 }

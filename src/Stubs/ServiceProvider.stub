@@ -3,7 +3,7 @@ namespace App\{moduleContainer}\{{module}};
 
 use \Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use App\{moduleContainer}\{{module}}\Interfaces\{module}Interface;
-use App\{moduleContainer}\{{module}}\Repositories\{module}Interface;
+use App\{moduleContainer}\{{module}}\Repositories\{module}Repository;
 
 /**
  * Class ServiceProvider
@@ -19,8 +19,8 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Register your binding
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->bind([{module}Interface::class, {module}Repository::class]);
+        $this->app->bind({module}Interface::class, {module}Repository::class);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseProvider
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-class RouteServiceProvider extends BaseProvider
+class NicoRouteProvider extends BaseProvider
 {
     /**
      * @var array
@@ -26,7 +26,7 @@ class RouteServiceProvider extends BaseProvider
 
     protected function init(): void
     {
-        $modulePath = $this->app['config']->get('nicoSystem.module');
+        $modulePath = $this->app['config']->get('nicosystem.module');
         if (!$modulePath) {
             return;
         }

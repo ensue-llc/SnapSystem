@@ -24,7 +24,6 @@ class ModuleGenerateCommand extends Command
      */
     protected $description = 'Generate a new nico module';
 
-
     protected $moduleContainer;
 
     protected $moduleSystem;
@@ -74,10 +73,10 @@ class ModuleGenerateCommand extends Command
     public function __construct(protected Filesystem $files, protected Application $app)
     {
         parent::__construct();
-        $this->moduleContainer = $this->app['config']->get('nicoSystem.module');
-        $this->moduleSystem = $this->app['config']->get('nicoSystem.system');
+        $this->moduleContainer = $this->app['config']->get('nicosystem.module');
+        $this->moduleSystem = $this->app['config']->get('nicosystem.system');
         $this->namespacePrefix = '\App\\' . $this->moduleContainer;
-        $this->stubPath = realpath(__DIR__ . "/../Stubs/") . "/";
+        $this->stubPath = dirname(__DIR__) . "/Stubs/";
     }
 
     public function handle()

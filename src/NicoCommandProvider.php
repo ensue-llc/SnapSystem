@@ -6,9 +6,8 @@ use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 use Ensue\NicoSystem\Commands\AngularAppDeploy;
 use Ensue\NicoSystem\Commands\ModuleGenerateCommand;
 
-class CommandServiceProvider extends AbstractServiceProvider
+class NicoCommandProvider extends AbstractServiceProvider
 {
-
     /**
      * @var bool
      */

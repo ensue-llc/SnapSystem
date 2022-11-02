@@ -1,4 +1,4 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::resource('{{routemodule}}','{{module}}Controller');
+Route::apiResource('{{routemodule}}','{{module}}Controller');

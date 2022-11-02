@@ -2,7 +2,6 @@
 
 namespace Ensue\NicoSystem\Validation;
 
-
 use Illuminate\Validation\Validator;
 
 /**
