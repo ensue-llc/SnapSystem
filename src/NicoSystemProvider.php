@@ -29,7 +29,7 @@ class NicoSystemProvider extends ServiceProvider
     protected function registerModulesProviders(): void
     {
         $modulePath = $this->app['config']->get('nicosystem.module');
-        if (!$modulePath) {
+        if (!$modulePath || !is_dir(app_path($modulePath))) {
             return;
         }
         $modules = array_map('basename', File::directories(app_path($modulePath)));

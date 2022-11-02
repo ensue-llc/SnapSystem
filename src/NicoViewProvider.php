@@ -22,8 +22,8 @@ class NicoViewProvider extends BaseServiceProvider
     {
         $file = new Filesystem();
         $modulePath = $this->app['config']->get('nicoSystem.module');
-        if (!$modulePath) {
-            return [];
+        if (!$modulePath || !is_dir(app_path($modulePath))) {
+            return null;
         }
         $modules = File::directories(app_path($modulePath));
         foreach ($modules as $module) {
