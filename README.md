@@ -8,7 +8,7 @@ Since our package is not hosted in packagist. Open composer.json file and update
 "repositories": [
     {
         "type": "vcs",
-        "url": "{repo-link}/ensue/nicosystem"
+        "url": "https://bitbucket.org/LYWL/nicosystem.git"
     }
 ]
 ```
@@ -18,6 +18,7 @@ Now composer will also look into this repository for any installable package. Ex
 ```
 composer require ensue/nicosystem
 ```
+Authenticate the installation process by providing username and password.
 
 ## Optional setup
 ### Publish nicosystem config file

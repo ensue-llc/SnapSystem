@@ -1,5 +1,5 @@
 {
-    "name": "ensue/nico-system",
+    "name": "ensue/nicosystem",
     "description": "Base system architecture for the laravel project",
     "type": "library",
     "autoload": {
