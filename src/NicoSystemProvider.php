@@ -58,14 +58,14 @@ class NicoSystemProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'nicosystem');
         $this->publishes([
             __DIR__ . '/../config/nicosystem.php' => config_path('nicosystem.php'),
             __DIR__ . '/../config/fileupload.php' => config_path('fileupload.php'),
         ], 'nicosystem');
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'nicosystem');
         $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/nicosystem'),
-        ]);
+            __DIR__.'/../lang' => $this->app->langPath(),
+        ], 'appconstant');
     }
 }
 

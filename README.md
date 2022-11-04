@@ -31,5 +31,11 @@ In **Handler.php** located in app/Exceptions/Handler.php
 2. Extend class with **BaseExceptionHandler**
 3. Override if required
 
-### 5. Extend Model
+### 5. Generate module
+Run command:
+```
+php artisan generate:nicoModule <module-name>
+```
+
+### 6. Extend Model
 Extend model form the AppBaseModel
