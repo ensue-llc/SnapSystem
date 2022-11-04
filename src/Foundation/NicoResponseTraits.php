@@ -2,11 +2,10 @@
 
 namespace Ensue\NicoSystem\Foundation;
 
-use Ensue\NicoSystem\Constants\AppConstants;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Lang;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -17,171 +16,107 @@ trait NicoResponseTraits
 {
     protected bool $api = true;
 
-    /**
-     * @param $body
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseOk($body, array $headers = []): JsonResponse
+    public function responseOk($body, $codeText = 'ok', $messageCode = 'ok', array $headers = []): JsonResponse
     {
-        return $this->nicoResponse($body, Response::HTTP_OK, $headers);
+        return $this->nicoResponse($body, Response::HTTP_OK, $codeText, $messageCode, $headers);
     }
 
-    /**
-     * @param $body
-     * @param int $status
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function nicoResponse($body, int $status = Response::HTTP_OK, array $headers = []): JsonResponse
+    public function nicoResponse($body, int $status = Response::HTTP_OK, $codeText = 'OK', $messageCode = 'ok', array $headers = []): JsonResponse
     {
         if ($body instanceof Collection) {
-            $body = new Paginator($body->all(), $body->count());
+            if ($body->count() > 0) {
+                $body = new LengthAwarePaginator($body->all(), $body->count(), $body->count());
+            } else {
+                $body = new Paginator($body->all(), $body->count());
+            }
         }
         $status = $this->validateStatusCode($status);
-
-        return response()->json($body, $status)->withHeaders($headers);
+        return response()->json([
+            'body' => $body,
+            'status' => [
+                "message" => trans("appconstant." . $messageCode),
+                'code' => $messageCode,
+                'code_text' => $codeText,
+            ]
+        ], $status)->withHeaders($headers);
     }
 
-    /**
-     * @param int $code
-     * @return int
-     */
     public function validateStatusCode(int $code = 0): int
     {
-        $status_code = array(100, 101, 102, 200, 201, 202, 203, 204, 205, 206, 207, 208, 226,
-            300, 301, 302, 303, 304, 305, 306, 307, 308
-        , 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 421, 422, 423, 424, 425, 426, 428, 429, 431, 451
-        , 500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511);
-        if (in_array($code, $status_code)) {
+        $statusCode = array(
+            100, 101, 102,
+            200, 201, 202, 203, 204, 205, 206, 207, 208, 226,
+            300, 301, 302, 303, 304, 305, 306, 307, 308,
+            400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 421, 422, 423, 424, 425, 426, 428, 429, 431, 451,
+            500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511
+        );
+        if (in_array($code, $statusCode)) {
             return $code;
         }
 
         return 500;
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseServerError(string $code = 'internal_server_error', array $headers = []): JsonResponse
+    public function responseServerError($codeText = 'internal server error occured', string $code = 'internal_server_error', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_INTERNAL_SERVER_ERROR, $code, $headers);
+        return $this->responseError(null, Response::HTTP_INTERNAL_SERVER_ERROR, $codeText, $code, $headers);
     }
 
-    /**
-     * @param int $status
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseError(int $status = Response::HTTP_INTERNAL_SERVER_ERROR, string $code = 'server_error', array $headers = []): JsonResponse
+    public function responseError($body, int $status = Response::HTTP_INTERNAL_SERVER_ERROR, $codeText = 'server error', $messageCode = 'server_error', array $headers = []): JsonResponse
     {
-        $status = $this->validateStatusCode($status);
+        return $this->nicoResponse($body, $status, $codeText, $messageCode, $headers);
+    }
 
-        if(Lang::has("appconstant." . $code)) {
-            $message = trans("appconstant." . $code);
-        } else if($status === Response::HTTP_INTERNAL_SERVER_ERROR){
-            $message = trans("appconstant." . AppConstants::ERR_CODE_ZERO);
-        } else {
-            $message = $code;
-        }
+    public function responseUnAuthorize(string $codeText = 'unauthorized', string $code = 'unauthorized', array $headers = []): JsonResponse
+    {
         return response()->json([
-            "message" => $message,
-            'code' => $code
-        ], $status)->withHeaders($headers);
+            'body' => null,
+            'status' => [
+                "message" => trans("appconstant." . $code),
+                'code' => $code,
+                'code_text' => $codeText,
+            ]
+        ], Response::HTTP_UNAUTHORIZED)->withHeaders($headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseUnAuthorize(string $code = 'unauthorized', array $headers = []): JsonResponse
+    public function responseForbidden(string $codeText = 'forbidden', string $code = 'forbidden', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_UNAUTHORIZED, $code, $headers);
+        return $this->responseError(null, Response::HTTP_FORBIDDEN, $codeText, $code, $headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseForbidden(string $code = 'forbidden', array $headers = []): JsonResponse
+    public function responseNotFound(string $codeText = 'not found', string $code = 'not_found', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_FORBIDDEN, $code, $headers);
+        return $this->responseError(null, Response::HTTP_NOT_FOUND, $codeText, $code, $headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseNotFound(string $code = 'not_found', array $headers = []): JsonResponse
+    public function responseBadRequest(string $codeText = 'bad request', string $code = 'bad_request', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_NOT_FOUND, $code, $headers);
+        return $this->responseError(null, Response::HTTP_BAD_REQUEST, $codeText, $code, $headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseBadRequest(string $code = 'bad_request', array $headers = []): JsonResponse
+    public function responsePreConditionFailed($body = '', string $codeText = 'precondition failed', string $code = 'precondition_failed', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_BAD_REQUEST, $code, $headers);
+        return $this->responseError($body, Response::HTTP_PRECONDITION_FAILED, $codeText, $code, $headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responsePreConditionFailed(string $code = 'precondition_failed', array $headers = []): JsonResponse
+    public function responseConflict($body = null, string $codeText = 'conflict', string $code = 'conflict', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_PRECONDITION_FAILED, $code, $headers);
+        return $this->responseError($body, Response::HTTP_CONFLICT, $codeText, $code, $headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseConflict(string $code = 'conflict', array $headers = []): JsonResponse
+    public function responseExpectationFailed($body = null, string $codeText = 'expectation failed', string $code = 'expectation_failed', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_CONFLICT, $code, $headers);
+        return $this->responseError($body, Response::HTTP_EXPECTATION_FAILED, $codeText, $code, $headers);
     }
 
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseExpectationFailed(string $code = 'expectation_failed', array $headers = []): JsonResponse
+    public function responseValidationError($body = null, string $codeText = 'form validation failed', $code = 'form_validation_error', array $headers = []): JsonResponse
     {
-        return $this->responseError(Response::HTTP_EXPECTATION_FAILED, $code, $headers);
+        return $this->responseError($body, Response::HTTP_EXPECTATION_FAILED, $codeText, $code, $headers);
     }
 
-    /**
-     * @param null $body
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseValidationError($body = null, array $headers = []): JsonResponse
+    public function responseTooManyAttempts(string $codeText = 'too many request', string $code = 'too_many_request', array $headers = []): JsonResponse
     {
-        return $this->nicoResponse($body, Response::HTTP_EXPECTATION_FAILED, $headers);
-    }
-
-    /**
-     * @param string $code
-     * @param array $headers
-     * @return JsonResponse
-     */
-    public function responseTooManyAttempts(string $code = 'too_many_request', array $headers = []): JsonResponse
-    {
-        return $this->responseError(Response::HTTP_TOO_MANY_REQUESTS, $code, $headers);
+        return $this->responseError(Null, Response::HTTP_TOO_MANY_REQUESTS, $codeText, $code, $headers);
     }
 
 }
