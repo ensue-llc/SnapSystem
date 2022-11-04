@@ -2,7 +2,6 @@
 
 namespace Ensue\NicoSystem;
 
-use Ensue\NicoSystem\Validation\ValidationServiceProvider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
@@ -11,8 +10,8 @@ class NicoSystemProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/nicosystem.php', 'nicosystem');
+        $this->mergeConfigFrom(__DIR__ . '/../config/fileupload.php', 'fileupload');
         $this->registerModulesProviders();
-
         $this->app->register(NicoRouteProvider::class);
         $this->app->register(NicoViewProvider::class);
         $this->app->register(ValidationServiceProvider::class);
@@ -60,7 +59,13 @@ class NicoSystemProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../config/nicosystem.php' => config_path('nicosystem.php'),
+            __DIR__ . '/../config/nicosystem.php' => config_path('nicosystem.php'),
+            __DIR__ . '/../config/fileupload.php' => config_path('fileupload.php'),
         ], 'nicosystem');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'nicosystem');
+        $this->publishes([
+            __DIR__.'/../lang' => $this->app->langPath('vendor/nicosystem'),
+        ]);
     }
 }
+

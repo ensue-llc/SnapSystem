@@ -23,7 +23,7 @@ abstract class BaseRepository implements BasicCrudInterface
 
     /**
      * BaseRepository constructor.
-     * @param \Ensue\NicoSystem\Foundation\Database\BaseModel $model
+     * @param BaseModel $model
      */
     public function __construct(protected BaseModel $model)
     {
@@ -189,7 +189,7 @@ abstract class BaseRepository implements BasicCrudInterface
      * @param string $id
      * @return BaseModel
      */
-    public function toggleStatus(string $id): BaseModel
+    public function toggleStatus(string|AppBaseModel $id): BaseModel
     {
         if (is_numeric($id)) {
             $model = $this->getById($id);

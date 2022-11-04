@@ -111,7 +111,6 @@ class AppConstants
      */
     public static function getAppMsgCodeFromStatusCode($code): int|string
     {
-
         return match ($code) {
             400 => static::ERR_BAD_REQUEST,
             401 => static::ERR_UNAUTHORIZED,

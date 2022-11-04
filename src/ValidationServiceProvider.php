@@ -1,7 +1,8 @@
 <?php
 
-namespace Ensue\NicoSystem\Validation;
+namespace Ensue\NicoSystem;
 
+use Ensue\NicoSystem\Validation\NicoValidation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -11,8 +12,8 @@ class ValidationServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Validator::resolver(static function($translator, $data, $rules, $messages){
-            return new NicoValidation($translator,$data,$rules,$messages);
+        Validator::resolver(static function ($translator, $data, $rules, $messages) {
+            return new NicoValidation($translator, $data, $rules, $messages);
         });
     }
 

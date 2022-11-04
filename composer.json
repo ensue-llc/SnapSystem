@@ -2,7 +2,6 @@
     "name": "ensue/nicosystem",
     "description": "Base system architecture for the laravel project",
     "keywords": ["ensue", "nicosystem"],
-    "license": "ENSUE",
     "type": "library",
     "autoload": {
         "psr-4": {
@@ -25,7 +24,8 @@
     ],
     "require": {
         "php": "^8.0.2",
-        "laravel/framework": "^9.37"
+        "laravel/framework": "^9.37",
+        "intervention/image": "^2.7"
     },
     "extra": {
         "laravel": {
