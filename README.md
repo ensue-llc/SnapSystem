@@ -20,8 +20,16 @@ composer require ensue/nicosystem
 ```
 Authenticate the installation process by providing username and password.
 
-## Optional setup
-### Publish nicosystem config file
+### 3. Publish config file
 ```
 php artisan vendor:publish --tag=nicosystem
 ```
+
+### 4. Exception handler
+In **Handler.php** located in app/Exceptions/Handler.php 
+1. Remove all code in it
+2. Extend class with **BaseExceptionHandler**
+3. Override if required
+
+### 5. Extend Model
+Extend model form the AppBaseModel
