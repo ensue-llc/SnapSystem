@@ -53,19 +53,19 @@ abstract class BaseExceptionHandler extends Handler
             if ($e instanceof HttpException && $request->getMethod() === 'OPTIONS') {
                 return new Response();
             }
-            if ($exception instanceof AuthenticationException) {
-                return $this->responseUnAuthorize($exception->getMessage());
-            } else if ($exception instanceof NicoException) {
-                return $this->nicoResponse($exception->getResponseBody(), $exception->getCode(), $exception->getMessage(), $exception->getResponseCode());
-            } elseif ($exception instanceof ValidationException) {
-                return $this->responseValidationError($exception->errors());
-            } elseif ($exception instanceof ModelNotFoundException) {
-                return $this->responseNotFound($exception->getMessage());
-            } elseif ($exception instanceof HttpException) {
-                return $this->nicoResponse('', $exception->getStatusCode(), $exception->getMessage(), AppConstants::getAppMsgCodeFromStatusCode($exception->getStatusCode()));
+            if ($e instanceof AuthenticationException) {
+                return $this->responseUnAuthorize($e->getMessage());
+            } else if ($e instanceof NicoException) {
+                return $this->nicoResponse($e->getResponseBody(), $e->getCode(), $e->getMessage(), $e->getResponseCode());
+            } elseif ($e instanceof ValidationException) {
+                return $this->responseValidationError($e->errors());
+            } elseif ($e instanceof ModelNotFoundException) {
+                return $this->responseNotFound($e->getMessage());
+            } elseif ($e instanceof HttpException) {
+                return $this->nicoResponse('', $e->getStatusCode(), $e->getMessage(), AppConstants::getAppMsgCodeFromStatusCode($e->getStatusCode()));
             }
 
-            return $this->nicoResponse(null, $exception->getCode(), $exception->getMessage() . " " . $exception->getFile() . ": line " . $exception->getLine(), $exception->getCode());
+            return $this->nicoResponse(null, $e->getCode(), $e->getMessage() . " " . $e->getFile() . ": line " . $e->getLine(), $e->getCode());
         }
 
         return parent::render($request, $e);
