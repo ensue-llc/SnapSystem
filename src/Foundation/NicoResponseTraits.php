@@ -16,12 +16,12 @@ trait NicoResponseTraits
 {
     protected bool $api = true;
 
-    public function responseOk($body, $codeText = 'ok', $messageCode = 'ok', array $headers = []): JsonResponse
+    public function responseOk($body, $codeText = 'ok', $messageCode = 'nicosystem::nicosystem.ok', array $headers = []): JsonResponse
     {
         return $this->nicoResponse($body, Response::HTTP_OK, $codeText, $messageCode, $headers);
     }
 
-    public function nicoResponse($body, int $status = Response::HTTP_OK, $codeText = 'OK', $messageCode = 'ok', array $headers = []): JsonResponse
+    public function nicoResponse($body, int $status = Response::HTTP_OK, $codeText = 'OK', string $messageCode = 'nicosystem::nicosystem.ok', array $headers = []): JsonResponse
     {
         if ($body instanceof Collection) {
             if ($body->count() > 0) {
@@ -31,11 +31,12 @@ trait NicoResponseTraits
             }
         }
         $status = $this->validateStatusCode($status);
+        $split = explode('.', $messageCode);
         return response()->json([
             'body' => $body,
             'status' => [
-                "message" => trans("appconstant." . $messageCode),
-                'code' => $messageCode,
+                "message" => trans($messageCode),
+                'code' => end($split),
                 'code_text' => $codeText,
             ]
         ], $status)->withHeaders($headers);
@@ -57,7 +58,7 @@ trait NicoResponseTraits
         return 500;
     }
 
-    public function responseServerError($codeText = 'internal server error occured', string $code = 'internal_server_error', array $headers = []): JsonResponse
+    public function responseServerError($codeText = 'internal server error occured', string $code = 'nicosystem::nicosystem.internal_server_error', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_INTERNAL_SERVER_ERROR, $codeText, $code, $headers);
     }
@@ -67,54 +68,55 @@ trait NicoResponseTraits
         return $this->nicoResponse($body, $status, $codeText, $messageCode, $headers);
     }
 
-    public function responseUnAuthorize(string $codeText = 'unauthorized', string $code = 'unauthorized', array $headers = []): JsonResponse
+    public function responseUnAuthorize(string $codeText = 'unauthorized', string $code = 'nicosystem::nicosystem.unauthorized', array $headers = []): JsonResponse
     {
+        $split = explode('.', $code);
         return response()->json([
             'body' => null,
             'status' => [
-                "message" => trans("appconstant." . $code),
-                'code' => $code,
+                "message" => trans($code),
+                'code' => end($split),
                 'code_text' => $codeText,
             ]
         ], Response::HTTP_UNAUTHORIZED)->withHeaders($headers);
     }
 
-    public function responseForbidden(string $codeText = 'forbidden', string $code = 'forbidden', array $headers = []): JsonResponse
+    public function responseForbidden(string $codeText = 'forbidden', string $code = 'nicosystem::nicosystem.forbidden', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_FORBIDDEN, $codeText, $code, $headers);
     }
 
-    public function responseNotFound(string $codeText = 'not found', string $code = 'not_found', array $headers = []): JsonResponse
+    public function responseNotFound(string $codeText = 'not found', string $code = 'nicosystem::nicosystem.not_found', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_NOT_FOUND, $codeText, $code, $headers);
     }
 
-    public function responseBadRequest(string $codeText = 'bad request', string $code = 'bad_request', array $headers = []): JsonResponse
+    public function responseBadRequest(string $codeText = 'bad request', string $code = 'nicosystem::nicosystem.bad_request', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_BAD_REQUEST, $codeText, $code, $headers);
     }
 
-    public function responsePreConditionFailed($body = '', string $codeText = 'precondition failed', string $code = 'precondition_failed', array $headers = []): JsonResponse
+    public function responsePreConditionFailed($body = '', string $codeText = 'precondition failed', string $code = 'nicosystem::nicosystem.precondition_failed', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_PRECONDITION_FAILED, $codeText, $code, $headers);
     }
 
-    public function responseConflict($body = null, string $codeText = 'conflict', string $code = 'conflict', array $headers = []): JsonResponse
+    public function responseConflict($body = null, string $codeText = 'conflict', string $code = 'nicosystem::nicosystem.conflict', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_CONFLICT, $codeText, $code, $headers);
     }
 
-    public function responseExpectationFailed($body = null, string $codeText = 'expectation failed', string $code = 'expectation_failed', array $headers = []): JsonResponse
+    public function responseExpectationFailed($body = null, string $codeText = 'expectation failed', string $code = 'nicosystem::nicosystem.expectation_failed', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_EXPECTATION_FAILED, $codeText, $code, $headers);
     }
 
-    public function responseValidationError($body = null, string $codeText = 'form validation failed', $code = 'form_validation_error', array $headers = []): JsonResponse
+    public function responseValidationError($body = null, string $codeText = 'form validation failed', $code = 'nicosystem::nicosystem.form_validation_error', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_EXPECTATION_FAILED, $codeText, $code, $headers);
     }
 
-    public function responseTooManyAttempts(string $codeText = 'too many request', string $code = 'too_many_request', array $headers = []): JsonResponse
+    public function responseTooManyAttempts(string $codeText = 'too many request', string $code = 'nicosystem::nicosystem.too_many_request', array $headers = []): JsonResponse
     {
         return $this->responseError(Null, Response::HTTP_TOO_MANY_REQUESTS, $codeText, $code, $headers);
     }

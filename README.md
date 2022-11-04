@@ -26,14 +26,9 @@ In **Handler.php** located in app/Exceptions/Handler.php
 2. Extend class with **BaseExceptionHandler**
 3. Override if required
 
-### Publish config file [Optional]
+### Publish config and lang file [Optional]
 ```
 php artisan vendor:publish --tag=nicosystem
-```
-
-### Publish lang file [Optional]
-```
-php artisan vendor:publish --tag=appconstant
 ```
 
 ### Generate module
