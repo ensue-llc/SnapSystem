@@ -34,7 +34,7 @@ php artisan vendor:publish --tag=snap
 ### Generate module
 Run command:
 ```
-php artisan generate:nicoModule <module-name>
+php artisan snap:generate <module-name>
 ```
 
 ### Extend Model
