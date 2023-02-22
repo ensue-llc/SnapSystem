@@ -2,13 +2,13 @@
 
 namespace App\{moduleContainer}\{{module}}\Filters;
 
-use Ensue\NicoSystem\Filters\BaseFilter;
+use Ensue\Snap\Filters\SnapFilter;
 
 /**
  * Class {{module}}Controller
  * @package App\{moduleContainer}\{{module}}\Filters
  */
-class {{module}}Filter extends BaseFilter
+class {{module}}Filter extends SnapFilter
 {
     /**
      * To do filter here

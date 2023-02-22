@@ -1,23 +1,32 @@
 <?php
 
-namespace Ensue\NicoSystem;
+namespace Ensue\Snap;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class NicoViewProvider extends BaseServiceProvider
+class SnapViewProvider extends BaseServiceProvider
 {
+    /**
+     * @return void
+     */
     public function register(): void
     {
 
     }
 
+    /**
+     * @return void
+     */
     public function boot(): void
     {
         $this->registerViewAndTranslations();
     }
 
+    /**
+     * @return array|null
+     */
     protected function registerViewAndTranslations(): null|array
     {
         $file = new Filesystem();

@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 
-if (!function_exists('nico_view')) {
+if (!function_exists('snap_view')) {
     /**
      * @param null $view
      * @param array $data
@@ -14,14 +14,14 @@ if (!function_exists('nico_view')) {
      * @param bool $nameOnly
      * @return View|Factory|string|Application
      */
-    function nico_view($view = null, array $data = [], array $mergeData = [], bool $nameOnly = false): View|Factory|string|Application
+    function snap_view($view = null, array $data = [], array $mergeData = [], bool $nameOnly = false): View|Factory|string|Application
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
         $file = Arr::get($trace, 'file');
         //put the namespace according to the module used
         //windows check, replace all backslashes with forward slash
         $file = str_replace("\\", "/", $file);
-        $modules = app()['config']->get('nicosystem.module');
+        $modules = app()['config']->get('snap.module');
         preg_match('/' . $modules . '\/[a-zA-Z]+[a-zA-Z0-9]*\//', $file, $matches);
         if (!$matches) {
             return view($view, $data, $mergeData);
@@ -37,7 +37,7 @@ if (!function_exists('nico_view')) {
 }
 
 
-if (!function_exists('nico_trans')) {
+if (!function_exists('snap_trans')) {
     /**
      * Translate the given message.
      *
@@ -46,14 +46,14 @@ if (!function_exists('nico_trans')) {
      * @param string $locale
      * @return array|Application|Translator|string|null
      */
-    function nico_strans($id = null, $parameters = [], $locale = null): array|string|Translator|Application|null
+    function snap_trans($id = null, $parameters = [], $locale = null): array|string|Translator|Application|null
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1)[0];
         $file = Arr::get($trace, 'file');
         //put the namespace according to the module used
         //windows check, replace all backslashes with forward slash
         $file = str_replace("\\", "/", $file);
-        $modules = app()['config']->get('nicosystem.module');
+        $modules = app()['config']->get('snap.module');
         preg_match('/' . $modules . '\/[a-zA-Z]+[a-zA-Z0-9]*\//', $file, $matches);
         $match = $matches[0];
         $arr = explode('/', $match);

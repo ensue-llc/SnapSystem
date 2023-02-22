@@ -1,14 +1,14 @@
 <?php
 
-namespace Ensue\NicoSystem\Validation;
+namespace Ensue\Snap\Validation;
 
 use Illuminate\Validation\Validator;
 
 /**
  * Class NicoValidation
- * @package Ensue\NicoSystem\Validation
+ * @package Ensue\Snap\Validation
  */
-class NicoValidation extends Validator
+class SnapValidation extends Validator
 {
     /**
      * Validate phone
@@ -28,9 +28,7 @@ class NicoValidation extends Validator
          * xxxxxxxxxx
          * (xxx)-xxx-xxxx
          */
-
         return preg_match('%^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\ \\\/]?)?((?:\(?\d{1,}\)?[\-\ \\\/]?){0,})?$%i', $value) && strlen($value) >= 9;
-
     }
 
     /**

@@ -1,12 +1,12 @@
 <?php
 
-namespace Ensue\NicoSystem;
+namespace Ensue\Snap;
 
 use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
-use Ensue\NicoSystem\Commands\AngularAppDeploy;
-use Ensue\NicoSystem\Commands\ModuleGenerateCommand;
+use Ensue\Snap\Commands\SnapAngularAppDeploy;
+use Ensue\Snap\Commands\SnapGenerateCommand;
 
-class NicoCommandProvider extends AbstractServiceProvider
+class SnapCommandProvider extends AbstractServiceProvider
 {
     /**
      * @var bool
@@ -17,8 +17,8 @@ class NicoCommandProvider extends AbstractServiceProvider
      * @var array|string[]
      */
     protected array $commands = [
-        ModuleGenerateCommand::class,
-        AngularAppDeploy::class,
+        SnapGenerateCommand::class,
+        SnapAngularAppDeploy::class,
     ];
 
     public function boot(): void

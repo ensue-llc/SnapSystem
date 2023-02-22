@@ -1,19 +1,19 @@
 <?php
 
-namespace Ensue\NicoSystem\Exceptions;
+namespace Ensue\Snap\Exceptions;
 
-use Ensue\NicoSystem\Constants\AppConstants;
+use Ensue\Snap\Constants\SnapConstant;
 
 /**
  * Class NicoException
- * @package Ensue\NicoSystem\Exceptions
+ * @package Ensue\Snap\Exceptions
  */
-class NicoException extends \RuntimeException
+class SnapException extends \RuntimeException
 {
     /**
      * @var string
      */
-    protected string $respCode = AppConstants::ERR_RUNTIME_ERROR;
+    protected string $respCode = SnapConstant::ERR_RUNTIME_ERROR;
 
     /**
      * NicoException constructor.
@@ -55,9 +55,9 @@ class NicoException extends \RuntimeException
     /**
      * Set response code
      * @param int|string $respCode
-     * @return NicoException
+     * @return SnapException
      */
-    public function setResponseCode(int|string $respCode): NicoException
+    public function setResponseCode(int|string $respCode): SnapException
     {
         $this->respCode = $respCode;
         return $this;
@@ -66,9 +66,9 @@ class NicoException extends \RuntimeException
     /**
      * Set response body
      * @param mixed $respBody
-     * @return NicoException
+     * @return SnapException
      */
-    public function setResponseBody(mixed $respBody): NicoException
+    public function setResponseBody(mixed $respBody): SnapException
     {
         $this->respBody = $respBody;
         return $this;

@@ -1,18 +1,18 @@
 <?php
 
-namespace Ensue\NicoSystem\Requests;
+namespace Ensue\Snap\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Ensue\NicoSystem\Foundation\NicoResponseTraits;
+use Ensue\Snap\Foundation\SnapResponseTraits;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class NicoRequest
- * @package Ensue\NicoSystem\Requests
+ * Class SnapRequest
+ * @package Ensue\SnapSystem\Requests
  */
-class NicoRequest extends FormRequest
+class SnapRequest extends FormRequest
 {
-    use NicoResponseTraits;
+    use SnapResponseTraits;
 
     /**
      * @return bool

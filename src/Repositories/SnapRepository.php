@@ -1,20 +1,20 @@
 <?php
 
-namespace Ensue\NicoSystem\Repositories;
+namespace Ensue\Snap\Repositories;
 
-use Ensue\NicoSystem\Constants\AppConstants;
+use Ensue\Snap\Constants\SnapConstant;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
-use Ensue\NicoSystem\Exceptions\NicoBadRequestException;
-use Ensue\NicoSystem\Foundation\Database\BaseModel;
-use Ensue\NicoSystem\Foundation\Status;
-use Ensue\NicoSystem\Interfaces\BasicCrudInterface;
+use Ensue\Snap\Exceptions\SnapBadRequestException;
+use Ensue\Snap\Foundation\Database\SnapModel;
+use Ensue\Snap\Foundation\Status;
+use Ensue\Snap\Interfaces\SnapCrudInterface;
 
-abstract class BaseRepository implements BasicCrudInterface
+abstract class SnapRepository implements SnapCrudInterface
 {
     /**
      * @var array
@@ -23,9 +23,9 @@ abstract class BaseRepository implements BasicCrudInterface
 
     /**
      * BaseRepository constructor.
-     * @param BaseModel $model
+     * @param SnapModel $model
      */
-    public function __construct(protected BaseModel $model)
+    public function __construct(protected SnapModel $model)
     {
     }
 
@@ -42,7 +42,7 @@ abstract class BaseRepository implements BasicCrudInterface
 
         $filter?->attachFilterQuery($params);
 
-        if (Arr::get($params, 'all') == 1) {
+        if (Arr::get($params, 'all') === 1 || Arr::get($params, 'all') === '1') {
             $paginate = false;
         }
 
@@ -73,13 +73,13 @@ abstract class BaseRepository implements BasicCrudInterface
 
         $this->model->setPerPage($perPage);
 
-        if (!in_array($orderColumn, $this->model->sortableColumns())) {
+        if (!in_array($orderColumn, $this->model->sortableColumns(), true)) {
             $orderColumn = $this->model->defaultSortColumn();
         }
 
         $orderColumn = $this->model->mapSortKey($orderColumn);
 
-        if (!$orderBy || !in_array($orderBy, ['asc', 'desc'])) {
+        if (!in_array($orderBy, ['asc', 'desc'])) {
             $orderBy = $this->model->defaultSortOrder();
         }
 
@@ -112,10 +112,10 @@ abstract class BaseRepository implements BasicCrudInterface
 
     /**
      * @param string $id
-     * @param array $options
+     * @param array $attributes
      * @return bool
      */
-    public function destroy(string $id, array $options = []): bool
+    public function destroy(string $id, array $attributes = []): bool
     {
         $model = $this->getQuery()->findOrFail($id);
         $this->dispatchEvent('deleting', $model);
@@ -137,25 +137,25 @@ abstract class BaseRepository implements BasicCrudInterface
     }
 
     /**
-     * @param array $inputs
-     * @return BaseModel
+     * @param array $attributes
+     * @return SnapModel
      */
-    public function create(array $inputs): BaseModel
+    public function create(array $attributes): SnapModel
     {
-        return $this->save($inputs);
+        return $this->save($attributes);
     }
 
     /**
      * @param array $attributes
      * @param null $id
-     * @return BaseModel
+     * @return SnapModel
      */
-    protected function save(array $attributes, $id = null): BaseModel
+    protected function save(array $attributes, $id = null): SnapModel
     {
         if ($id) {
             $model = $this->getQuery()->findOrFail($id);
-            if ($model->status === Status::STATUS_SUSPENDED) {
-                throw new NicoBadRequestException("Resource is not editable", AppConstants::ERR_SUSPENDED_MODEL_NOT_EDITABLE);
+            if ($model->getAttribute('status') === Status::STATUS_SUSPENDED) {
+                throw new SnapBadRequestException("Resource is not editable", SnapConstant::ERR_SUSPENDED_MODEL_NOT_EDITABLE);
             }
         } else {
             $model = $this->model->newInstance();
@@ -178,22 +178,22 @@ abstract class BaseRepository implements BasicCrudInterface
     /**
      * @param string $id
      * @param array $attributes
-     * @return BaseModel
+     * @return SnapModel
      */
-    public function update(string $id, array $attributes): BaseModel
+    public function update(string $id, array $attributes): SnapModel
     {
         return $this->save($attributes, $id);
     }
 
     /**
-     * @param string $id
-     * @return BaseModel
+     * @param string|SnapModel $id
+     * @return SnapModel
      */
-    public function toggleStatus(string|AppBaseModel $id): BaseModel
+    public function toggleStatus(string|SnapModel $id): SnapModel
     {
         if (is_numeric($id)) {
             $model = $this->getById($id);
-        } elseif ($id instanceof AppBaseModel) {
+        } elseif ($id instanceof SnapModel) {
             $model = $id;
         } else {
             throw new ModelNotFoundException();
@@ -203,7 +203,7 @@ abstract class BaseRepository implements BasicCrudInterface
         } elseif ($model->status == Status::STATUS_PUBLISHED) {
             $model->status = Status::STATUS_UNPUBLISHED;
         } elseif ($model->status == Status::STATUS_SUSPENDED) {
-            throw new NicoBadRequestException("Cannot modify the model because the status is suspended", AppConstants::ERR_SUSPENDED_MODEL_NOT_EDITABLE);
+            throw new SnapBadRequestException("Cannot modify the model because the status is suspended", SnapConstant::ERR_SUSPENDED_MODEL_NOT_EDITABLE);
         }
         $this->dispatchEvent('updating', $model);
         $model->save();
@@ -214,9 +214,9 @@ abstract class BaseRepository implements BasicCrudInterface
     /**
      * @param string $id
      * @param array $attributes
-     * @return BaseModel
+     * @return SnapModel
      */
-    public function getById(string $id, array $attributes = []): BaseModel
+    public function getById(string $id, array $attributes = []): SnapModel
     {
         return $this->getQuery()->findOrFail($id);
     }
@@ -225,9 +225,9 @@ abstract class BaseRepository implements BasicCrudInterface
      * @param string $id
      * @param $field
      * @param $value
-     * @return BaseModel
+     * @return SnapModel
      */
-    protected function updateSingle(string $id, $field, $value): BaseModel
+    protected function updateSingle(string $id, $field, $value): SnapModel
     {
         $model = $this->getQuery()->findOrFail($id);
         $model->$field = $value;

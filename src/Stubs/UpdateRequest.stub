@@ -1,13 +1,14 @@
 <?php
+
 namespace App\{moduleContainer}\{{module}}\Requests;
 
-use Ensue\NicoSystem\Requests\NicoRequest;
+use Ensue\Snap\Requests\SnapRequest;
 
 /**
  * Class {module}UpdateRequest
  * @package App\{moduleContainer}\{{module}}\Requests
  */
-class {module}UpdateRequest extends NicoRequest
+class {module}UpdateRequest extends SnapRequest
 {
 
 }

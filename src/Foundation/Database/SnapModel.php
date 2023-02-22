@@ -6,18 +6,18 @@
  * Time: 11:04 PM
  */
 
-namespace Ensue\NicoSystem\Foundation\Database;
+namespace Ensue\Snap\Foundation\Database;
 
 use Closure;
-use Ensue\NicoSystem\Exceptions\DataAssertionException;
-use Ensue\NicoSystem\Foundation\Database\Relation\HasManyExtended;
-use Ensue\NicoSystem\Foundation\Status;
+use Ensue\Snap\Exceptions\DataAssertionException;
+use Ensue\Snap\Foundation\Database\Relation\HasManyExtended;
+use Ensue\Snap\Foundation\Status;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
-abstract class BaseModel extends Model
+abstract class SnapModel extends Model
 {
     /**
      *  True to make responses to snakeCase
@@ -80,11 +80,7 @@ abstract class BaseModel extends Model
      */
     public function mapSortKey($key): string
     {
-        if (isset($this->sortKeyMaps[$key])) {
-            return $this->sortKeyMaps[$key];
-        }
-
-        return $key;
+        return $this->sortKeyMaps[$key] ?? $key;
     }
 
     /**

@@ -6,7 +6,7 @@
  * Time: 11:26 PM
  */
 
-namespace Ensue\NicoSystem\Foundation;
+namespace Ensue\Snap\Foundation;
 
 
 class Status
@@ -49,6 +49,9 @@ class Status
      */
     public static function options(): array
     {
-        return [static::STATUS_UNPUBLISHED, static::STATUS_PUBLISHED];
+        return [
+            static::STATUS_PUBLISHED,
+            static::STATUS_UNPUBLISHED,
+        ];
     }
 }

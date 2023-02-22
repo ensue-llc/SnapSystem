@@ -1,23 +1,25 @@
 <?php
 
-namespace Ensue\NicoSystem;
+namespace Ensue\Snap;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
-class NicoSystemProvider extends ServiceProvider
+class SnapProvider extends ServiceProvider
 {
+    /**
+     * @return void
+     */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/nicosystem.php', 'nicosystem');
+        $this->mergeConfigFrom(__DIR__ . '/../config/snap.php', 'snap');
         $this->mergeConfigFrom(__DIR__ . '/../config/fileupload.php', 'fileupload');
         $this->registerModulesProviders();
-        $this->app->register(NicoRouteProvider::class);
-        $this->app->register(NicoViewProvider::class);
+        $this->app->register(SnapRouteProvider::class);
+        $this->app->register(SnapViewProvider::class);
         $this->app->register(ValidationServiceProvider::class);
-
         if ($this->app->runningInConsole()) {
-            $this->app->register(NicoCommandProvider::class);
+            $this->app->register(SnapCommandProvider::class);
         }
         include_once(__DIR__ . '/Foundation/helpers.php');
     }
@@ -27,7 +29,7 @@ class NicoSystemProvider extends ServiceProvider
      */
     protected function registerModulesProviders(): void
     {
-        $modulePath = $this->app['config']->get('nicosystem.module');
+        $modulePath = $this->app['config']->get('snap.module');
         if (!$modulePath || !is_dir(app_path($modulePath))) {
             return;
         }
@@ -56,14 +58,17 @@ class NicoSystemProvider extends ServiceProvider
         }
     }
 
+    /**
+     * @return void
+     */
     public function boot(): void
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'nicosystem');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'snap');
         $this->publishes([
-            __DIR__ . '/../config/nicosystem.php' => config_path('nicosystem.php'),
+            __DIR__ . '/../config/snap.php' => config_path('snap.php'),
             __DIR__ . '/../config/fileupload.php' => config_path('fileupload.php'),
             __DIR__ . '/../lang' => $this->app->langPath(),
-        ], 'nicosystem');
+        ], 'snap');
     }
 }
 

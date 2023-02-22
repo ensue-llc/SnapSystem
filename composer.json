@@ -1,18 +1,14 @@
 {
-    "name": "ensue/nicosystem",
+    "name": "ensue/snap",
     "description": "Base system architecture for the laravel project",
-    "keywords": ["ensue", "nicosystem"],
+    "keywords": ["ensue", "snap"],
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Ensue\\NicoSystem\\": "src/"
+            "Ensue\\Snap\\": "src/"
         }
     },
     "authors": [
-        {
-            "name": "Amar Lamichhane",
-            "email": "amar.lamichhane@ensue.us"
-        },
         {
             "name": "Shiva Thapa",
             "email": "shiva.thapa@ensue.us"
@@ -23,16 +19,16 @@
         }
     ],
     "require": {
-        "php": "^8.0.2",
-        "laravel/framework": "^8.0",
+        "php": "^8.1",
+        "laravel/framework": "^10.0",
         "intervention/image": "^2.7"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Ensue\\NicoSystem\\NicoSystemProvider"
+                "SnapProvider"
             ]
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

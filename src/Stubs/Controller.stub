@@ -6,14 +6,14 @@ use App\{moduleContainer}\{{module}}\Interfaces\{module}Interface;
 use App\{moduleContainer}\{{module}}\Requests\{module}CreateRequest;
 use App\{moduleContainer}\{{module}}\Requests\{module}UpdateRequest;
 use Illuminate\Http\JsonResponse;
-use Ensue\NicoSystem\Controllers\BaseController;
-use Ensue\NicoSystem\Requests\NicoRequest;
+use Ensue\Snap\Controllers\SnapController;
+use Ensue\Snap\Requests\SnapRequest;
 
 /**
  * Class {{module}}Controller
  * @package App\{moduleContainer}\{{module}}\Controllers
  */
-class {{module}}Controller extends BaseController
+class {{module}}Controller extends SnapController
 {
     /**
      * {{module}}Controller constructor.
@@ -24,10 +24,10 @@ class {{module}}Controller extends BaseController
     }
 
     /**
-     * @param NicoRequest $request
+     * @param SnapRequest $request
      * @return JsonResponse
      */
-    public function index(NicoRequest $request): JsonResponse
+    public function index(SnapRequest $request): JsonResponse
     {
         return $this->responseOk($this->repository->getList($request->all()));
     }
@@ -52,31 +52,31 @@ class {{module}}Controller extends BaseController
     }
 
     /**
-     * @param NicoRequest $request
+     * @param SnapRequest $request
      * @param string $id
      * @return JsonResponse
      */
-    public function destroy(NicoRequest $request, string $id): JsonResponse
+    public function destroy(SnapRequest $request, string $id): JsonResponse
     {
         return $this->responseOk($this->repository->destroy($id));
     }
 
     /**
-     * @param NicoRequest $request
+     * @param SnapRequest $request
      * @param string $id
      * @return JsonResponse
      */
-    public function show (NicoRequest $request, string $id): JsonResponse
+    public function show (SnapRequest $request, string $id): JsonResponse
     {
         return $this->responseOk($this->repository->getById($id));
     }
 
     /**
-     * @param NicoRequest $request
+     * @param SnapRequest $request
      * @param string $id
      * @return JsonResponse
      */
-    public function toggleStatus(NicoRequest $request, string $id): JsonResponse
+    public function toggleStatus(SnapRequest $request, string $id): JsonResponse
     {
         return $this->responseOk($this->repository->toggleStatus($id));
     }

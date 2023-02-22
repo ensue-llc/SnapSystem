@@ -1,6 +1,6 @@
 <?php
 
-namespace Ensue\NicoSystem\Foundation\FileUpload;
+namespace Ensue\Snap\Foundation\FileUpload;
 
 use Exception;
 use Illuminate\Http\Request;

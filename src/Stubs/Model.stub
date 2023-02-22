@@ -1,13 +1,14 @@
 <?php
+
 namespace App\{moduleContainer}\{{module}}\Database\Models;
 
-use App\{system}\{module}\Database\Models\{module} as BaseModel;
+use App\{system}\{module}\Database\Models\{module} as SnapModel;
 
 /**
  * Class {module}
  * @package App\{moduleContainer}\{{module}}\Database\Models
  */
-class {module} extends BaseModel
+class {module} extends SnapModel
 {
 
 }

@@ -1,21 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 1/8/2017
- * Time: 2:13 PM
- */
 
 namespace App\{system}\{module}\Database\Models;
 
-use Ensue\NicoSystem\Foundation\Database\BaseModel;
+use Ensue\Snap\Foundation\Database\SnapModel;
 
-class {module} extends BaseModel
+class {module} extends SnapModel
 {
     /**
      * @var array
      */
     protected $fillable = [];
+
     /**
      * @var array
      */

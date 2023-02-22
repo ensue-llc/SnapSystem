@@ -2,13 +2,13 @@
 
 namespace App\{moduleContainer}\{{module}}\Interfaces;
 
-use Ensue\NicoSystem\Interfaces\BasicCrudInterface;
+use Ensue\Snap\Interfaces\SnapCrudInterface;
 
 /**
  * Interface {module}Interface
  * @package App\{moduleContainer}\{{module}}\Interfaces
  */
-interface {module}Interface extends BasicCrudInterface
+interface {module}Interface extends SnapCrudInterface
 {
 
 }

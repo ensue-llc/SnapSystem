@@ -1,14 +1,14 @@
 <?php
 
-namespace Ensue\NicoSystem\Foundation\Database;
+namespace Ensue\Snap\Foundation\Database;
 
+use Ensue\Snap\Foundation\Status;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-use Ensue\NicoSystem\Foundation\Status;
 
-abstract class AppBaseModel extends BaseModel
+abstract class SnapAppModel extends SnapModel
 {
     use SoftDeletes, EditorLogs, HasFactory;
 

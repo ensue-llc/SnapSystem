@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amar
- * Date: 11/1/2017
- * Time: 9:07 AM
- */
 
 return [
     'create_thumb' => env('FILE_UPLOAD_CREATE_THUMB', true),

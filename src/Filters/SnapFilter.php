@@ -1,14 +1,14 @@
 <?php
 
-namespace Ensue\NicoSystem\Filters;
+namespace Ensue\Snap\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class BaseFilter
- * @package Ensue\NicoSystem\Filters
+ * @package Ensue\Snap\Filters
  */
-abstract class BaseFilter
+abstract class SnapFilter
 {
     /**
      * BaseFilter constructor.
@@ -44,11 +44,6 @@ abstract class BaseFilter
     }
 
     /**
-     * @param string $keyword
-     */
-    abstract public function keyword(string $keyword): void;
-
-    /**
      * @param string $status
      */
     public function status(string $status = ''): void
@@ -57,5 +52,10 @@ abstract class BaseFilter
             $this->builder->where('status', $status);
         }
     }
+
+    /**
+     * @param string $keyword
+     */
+    abstract public function keyword(string $keyword): void;
 
 }

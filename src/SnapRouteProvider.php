@@ -1,13 +1,13 @@
 <?php
 
-namespace Ensue\NicoSystem;
+namespace Ensue\Snap;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseProvider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-class NicoRouteProvider extends BaseProvider
+class SnapRouteProvider extends BaseProvider
 {
     /**
      * @var array
@@ -26,7 +26,7 @@ class NicoRouteProvider extends BaseProvider
 
     protected function init(): void
     {
-        $modulePath = $this->app['config']->get('nicosystem.module');
+        $modulePath = $this->app['config']->get('snap.module');
         if (!$modulePath || !is_dir(app_path($modulePath))) {
             return;
         }

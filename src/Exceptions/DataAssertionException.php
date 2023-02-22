@@ -1,10 +1,10 @@
 <?php
 
-namespace Ensue\NicoSystem\Exceptions;
+namespace Ensue\Snap\Exceptions;
 
 /**
  * Class DataAssertionException
- * @package Ensue\NicoSystem\Exceptions
+ * @package Ensue\Snap\Exceptions
  */
 class DataAssertionException extends \RuntimeException
 {

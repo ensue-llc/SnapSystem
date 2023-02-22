@@ -1,11 +1,11 @@
 <?php
 
-namespace Ensue\NicoSystem\Foundation\Database;
+namespace Ensue\Snap\Foundation\Database;
 
 
 use Illuminate\Database\Schema\Blueprint;
 
-class NicoBlueprint extends Blueprint
+class SnapBlueprint extends Blueprint
 {
     /**
      * The method that adds editors(created_by, updated_by and deleted_by) to the table

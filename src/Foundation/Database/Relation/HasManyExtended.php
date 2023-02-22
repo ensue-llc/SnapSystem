@@ -1,6 +1,6 @@
 <?php
 
-namespace Ensue\NicoSystem\Foundation\Database\Relation;
+namespace Ensue\Snap\Foundation\Database\Relation;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;

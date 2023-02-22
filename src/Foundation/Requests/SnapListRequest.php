@@ -1,12 +1,15 @@
 <?php
 
-namespace Ensue\NicoSystem\Foundation\Requests;
+namespace Ensue\Snap\Foundation\Requests;
 
-use Ensue\NicoSystem\Requests\NicoRequest;
+use Ensue\Snap\Requests\SnapRequest;
 
-class NicoListRequest extends NicoRequest
+class SnapListRequest extends SnapRequest
 {
 
+    /**
+     * @return string[]
+     */
     public function messages(): array
     {
         return [

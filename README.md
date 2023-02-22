@@ -1,4 +1,4 @@
-# Nico System
+# Snap System
 Underlying architecture for laravel project
 
 ## Getting Started
@@ -8,7 +8,7 @@ Since our package is not hosted in packagist. Open composer.json file and update
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://bitbucket.org/LYWL/nicosystem.git"
+        "url": "https://bitbucket.org/LYWL/snap.git"
     }
 ]
 ```
@@ -16,7 +16,7 @@ Since our package is not hosted in packagist. Open composer.json file and update
 ### Install package
 Now composer will also look into this repository for any installable package. Execute the following command to install the package:
 ```
-composer require ensue/nicosystem
+composer require ensue/snap
 ```
 Authenticate the installation process by providing username and password.
 
@@ -28,7 +28,7 @@ In **Handler.php** located in app/Exceptions/Handler.php
 
 ### Publish config and lang file [Optional]
 ```
-php artisan vendor:publish --tag=nicosystem
+php artisan vendor:publish --tag=snap
 ```
 
 ### Generate module

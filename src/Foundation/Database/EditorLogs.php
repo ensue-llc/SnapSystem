@@ -1,8 +1,8 @@
 <?php
 
-namespace Ensue\NicoSystem\Foundation\Database;
+namespace Ensue\Snap\Foundation\Database;
 
-use Ensue\NicoSystem\Exceptions\ModelEditorNullException;
+use Ensue\Snap\Exceptions\SnapModelEditorNullException;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -57,7 +57,7 @@ trait EditorLogs
                 $model->{$self->createdBy} = $editor->{$self->ownerPrimaryKeyName};
                 $model->{$self->updatedBy} = $editor->{$self->ownerPrimaryKeyName};
             } elseif (static::$failIfEditorNotFound) {
-                throw new ModelEditorNullException("Editor Model for " . static::class . " is null.");
+                throw new SnapModelEditorNullException("Editor Model for " . static::class . " is null.");
             }
 
         });
@@ -68,7 +68,7 @@ trait EditorLogs
             if ($editor) {
                 $model->{$self->updatedBy} = $editor->{$self->ownerPrimaryKeyName};
             } elseif (static::$failIfEditorNotFound) {
-                throw new ModelEditorNullException("Editor Model for " . static::class . " is null.");
+                throw new SnapModelEditorNullException("Editor Model for " . static::class . " is null.");
             }
         });
 
@@ -81,7 +81,7 @@ trait EditorLogs
                     $model->{$self->deletedBy} = $editor->{$self->ownerPrimaryKeyName};
                     $model->save();
                 } elseif (static::$failIfEditorNotFound) {
-                    throw new ModelEditorNullException("Editor Model for " . static::class . " is null.");
+                    throw new SnapModelEditorNullException("Editor Model for " . static::class . " is null.");
                 }
             });
         }

@@ -1,18 +1,17 @@
 <?php
 
-namespace Ensue\NicoSystem\Commands;
+namespace Ensue\Snap\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class AngularAppDeploy
- * @package Ensue\NicoSystem\Commands
+ * @package Ensue\Snap\Commands
  */
-class AngularAppDeploy extends Command
+class SnapAngularAppDeploy extends Command
 {
-    const BUILD_MODE_SIMPLE = 'simple';
-
     /**
      * The name and signature of the console command.
      *
@@ -23,7 +22,7 @@ class AngularAppDeploy extends Command
     /**
      * @var string
      */
-    protected string $appRoot = "hr-angular";
+    protected string $appRoot = "app-angular";
 
     /**
      * @var string
@@ -42,7 +41,7 @@ class AngularAppDeploy extends Command
 
     /**
      * AngularAppDeploy constructor.
-     * @param \Illuminate\Filesystem\Filesystem $fileSystem
+     * @param Filesystem $fileSystem
      */
     public function __construct(protected Filesystem $fileSystem)
     {
@@ -57,9 +56,9 @@ class AngularAppDeploy extends Command
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             if ($this->option('advanced')) {
@@ -80,14 +79,14 @@ class AngularAppDeploy extends Command
             } else {
                 $this->info("Couldn't deploy application. Please contact the developer to sort out the issue\r\n");
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->error($exception->getMessage());
         } finally {
             $this->cleanupBuilds();
         }
     }
 
-    protected function setBuildOption()
+    protected function setBuildOption(): void
     {
         $option = $this->option('build-option');
         if (!$option) {
@@ -100,7 +99,7 @@ class AngularAppDeploy extends Command
     /**
      * run npm build command
      */
-    protected function runNpmAngularBuildCommand()
+    protected function runNpmAngularBuildCommand(): void
     {
         $this->setAngularAppEnvironment();
         $this->setIndexFile();
@@ -118,10 +117,10 @@ class AngularAppDeploy extends Command
         }
     }
 
-    protected function setAngularAppEnvironment()
+    protected function setAngularAppEnvironment(): void
     {
         //lets copy the code to prod specific to environment
-        $file = "environment." . ($this->buildOption != "" ? $this->buildOption . ".ts" : "ts");
+        $file = "environment." . ($this->buildOption !== "" ? $this->buildOption . ".ts" : "ts");
         $path = $this->appRoot . '/src/environments/';
         if (!$this->fileSystem->exists($path . $file)) {
             $this->info("Required file {$path}{$file} doesn't exist.");
@@ -142,10 +141,13 @@ class AngularAppDeploy extends Command
         }
     }
 
-    protected function setIndexFile()
+    /**
+     * @return void
+     */
+    protected function setIndexFile(): void
     {
         //lets copy the code to prod specific to index file
-        $file = "index." . ($this->buildOption != "" ? $this->buildOption . ".html" : "html");
+        $file = "index." . ($this->buildOption !== "" ? $this->buildOption . ".html" : "html");
         $path = $this->appRoot . '/src/';
         if (!$this->fileSystem->exists($path . $file)) {
             $this->info("Required file {$path}{$file} doesn't exist. Proceeding with normal build.");
@@ -166,7 +168,10 @@ class AngularAppDeploy extends Command
         }
     }
 
-    public function removeOldBuild()
+    /**
+     * @return void
+     */
+    public function removeOldBuild(): void
     {
         $fileExtension = ['js', 'js.map', 'css', 'woff', 'woff2', 'eot', 'ttf', 'svg'];
         foreach ($fileExtension as $ext) {
@@ -182,7 +187,10 @@ class AngularAppDeploy extends Command
         }
     }
 
-    protected function cleanupBuilds()
+    /**
+     * @return void
+     */
+    protected function cleanupBuilds(): void
     {
         $path = $this->appRoot . '/src/environments/';
         //finally restore the previous environment file

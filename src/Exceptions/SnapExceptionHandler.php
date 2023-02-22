@@ -1,9 +1,9 @@
 <?php
 
-namespace Ensue\NicoSystem\Exceptions;
+namespace Ensue\Snap\Exceptions;
 
-use Ensue\NicoSystem\Constants\AppConstants;
-use Ensue\NicoSystem\Foundation\NicoResponseTraits;
+use Ensue\Snap\Constants\SnapConstant;
+use Ensue\Snap\Foundation\SnapResponseTraits;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,9 +15,9 @@ use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
-abstract class BaseExceptionHandler extends Handler
+abstract class SnapExceptionHandler extends Handler
 {
-    use NicoResponseTraits;
+    use SnapResponseTraits;
 
     /**
      * A list of the exception types that are not reported.
@@ -55,14 +55,14 @@ abstract class BaseExceptionHandler extends Handler
             }
             if ($e instanceof AuthenticationException) {
                 return $this->responseUnAuthorize($e->getMessage());
-            } else if ($e instanceof NicoException) {
+            } else if ($e instanceof SnapException) {
                 return $this->nicoResponse($e->getResponseBody(), $e->getCode(), $e->getMessage(), $e->getResponseCode());
             } elseif ($e instanceof ValidationException) {
                 return $this->responseValidationError($e->errors());
             } elseif ($e instanceof ModelNotFoundException) {
                 return $this->responseNotFound($e->getMessage());
             } elseif ($e instanceof HttpException) {
-                return $this->nicoResponse('', $e->getStatusCode(), $e->getMessage(), AppConstants::getAppMsgCodeFromStatusCode($e->getStatusCode()));
+                return $this->nicoResponse('', $e->getStatusCode(), $e->getMessage(), SnapConstant::getAppMsgCodeFromStatusCode($e->getStatusCode()));
             }
 
             return $this->nicoResponse(null, $e->getCode(), $e->getMessage() . " " . $e->getFile() . ": line " . $e->getLine(), $e->getCode());

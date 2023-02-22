@@ -1,23 +1,18 @@
 <?php
 
-namespace Ensue\NicoSystem\Constants;
+namespace Ensue\Snap\Constants;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class AppConstants
+class SnapConstant
 {
-    /**
-     * The general constant value for most of the success response
-     *
-     * @type string
-     */
     public const SUCCESS_OK = 'ok';
 
-    public const ERR_CODE_ZERO = 0;
+    public const ERR_CODE_ZERO = '0';
 
-    public const ERR_CODE_404 = 404;
+    public const ERR_CODE_404 = '404';
 
-    public const UNPROCESSABLE_ENTITY = 422;
+    public const UNPROCESSABLE_ENTITY = '422';
 
     /**
      *
@@ -107,20 +102,20 @@ class AppConstants
 
     /**
      * @param $code
-     * @return int|string
+     * @return string
      */
-    public static function getAppMsgCodeFromStatusCode($code): int|string
+    public static function getAppMsgCodeFromStatusCode($code): string
     {
         return match ($code) {
-            400 => static::ERR_BAD_REQUEST,
-            401 => static::ERR_UNAUTHORIZED,
-            403 => static::ERR_FORBIDDEN,
-            404 => static::ERR_NOT_FOUND,
-            Response::HTTP_METHOD_NOT_ALLOWED => static::ERR_METHOD_NOT_ALLOWED,
-            Response::HTTP_EXPECTATION_FAILED => static::ERR_EXPECTATION_FAILED,
-            Response::HTTP_PRECONDITION_FAILED => static::ERR_PRECONDITION_FAILED,
-            Response::HTTP_INTERNAL_SERVER_ERROR => static::ERR_INTERNAL_SERVER_ERROR,
-            default => static::ERR_CODE_ZERO,
+            400 => self::ERR_BAD_REQUEST,
+            401 => self::ERR_UNAUTHORIZED,
+            403 => self::ERR_FORBIDDEN,
+            404 => self::ERR_NOT_FOUND,
+            Response::HTTP_METHOD_NOT_ALLOWED => self::ERR_METHOD_NOT_ALLOWED,
+            Response::HTTP_EXPECTATION_FAILED => self::ERR_EXPECTATION_FAILED,
+            Response::HTTP_PRECONDITION_FAILED => self::ERR_PRECONDITION_FAILED,
+            Response::HTTP_INTERNAL_SERVER_ERROR => self::ERR_INTERNAL_SERVER_ERROR,
+            default => self::ERR_CODE_ZERO,
         };
     }
 }

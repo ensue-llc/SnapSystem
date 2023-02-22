@@ -5,14 +5,14 @@ namespace App\{moduleContainer}\{{module}}\Repositories;
 use App\{moduleContainer}\{{module}}\Filters\{{module}}Filter;
 use App\{moduleContainer}\{{module}}\Interfaces\{module}Interface;
 use App\{moduleContainer}\{{module}}\Database\Models\{module};
-use Ensue\NicoSystem\Repositories\BaseRepository;
+use Ensue\Snap\Repositories\SnapRepository;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class {module}Repository
  * @package App\{moduleContainer}\{{module}}\Repositories
  */
-class {module}Repository extends BaseRepository implements {module}Interface
+class {module}Repository extends SnapRepository implements {module}Interface
 {
     /**
      * {module}Repository constructor.
