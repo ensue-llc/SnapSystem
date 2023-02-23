@@ -23,7 +23,7 @@ Authenticate the installation process by providing username and password.
 ### Exception handler
 In **Handler.php** located in app/Exceptions/Handler.php 
 1. Remove all code in it
-2. Extend class with **BaseExceptionHandler**
+2. Extend class with **SnapExceptionHandler**
 3. Override if required
 
 ### Publish config and lang file [Optional]
@@ -38,4 +38,4 @@ php artisan snap:generate <module-name>
 ```
 
 ### Extend Model
-Extend model form the AppBaseModel
+Extend model form the SnapAppModel
