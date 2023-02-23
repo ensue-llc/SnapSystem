@@ -49,26 +49,22 @@ abstract class SnapExceptionHandler extends Handler
      */
     public function render($request, Throwable $e): Response|JsonResponse
     {
-        if ($this->isApiRequest($request)) {
-            if ($e instanceof HttpException && $request->getMethod() === 'OPTIONS') {
-                return new Response();
-            }
-            if ($e instanceof AuthenticationException) {
-                return $this->responseUnAuthorize($e->getMessage());
-            } else if ($e instanceof SnapException) {
-                return $this->nicoResponse($e->getResponseBody(), $e->getCode(), $e->getMessage(), $e->getResponseCode());
-            } elseif ($e instanceof ValidationException) {
-                return $this->responseValidationError($e->errors());
-            } elseif ($e instanceof ModelNotFoundException) {
-                return $this->responseNotFound($e->getMessage());
-            } elseif ($e instanceof HttpException) {
-                return $this->nicoResponse('', $e->getStatusCode(), $e->getMessage(), SnapConstant::getAppMsgCodeFromStatusCode($e->getStatusCode()));
-            }
-
-            return $this->nicoResponse(null, $e->getCode(), $e->getMessage() . " " . $e->getFile() . ": line " . $e->getLine(), $e->getCode());
+        if (!$this->isApiRequest($request)) {
+            return parent::render($request, $e);
         }
 
-        return parent::render($request, $e);
+        if ($e instanceof HttpException && $request->getMethod() === 'OPTIONS') {
+            return new Response();
+        }
+
+        return match (true) {
+            $e instanceof AuthenticationException => $this->responseUnAuthorize($e->getMessage()),
+            $e instanceof SnapException => $this->nicoResponse($e->getResponseBody(), $e->getCode(), $e->getMessage(), $e->getResponseCode()),
+            $e instanceof ValidationException => $this->responseValidationError($e->errors()),
+            $e instanceof ModelNotFoundException => $this->responseNotFound($e->getMessage()),
+            $e instanceof HttpException => $this->nicoResponse('', $e->getStatusCode(), $e->getMessage(), SnapConstant::getAppMsgCodeFromStatusCode($e->getStatusCode())),
+            default => $this->nicoResponse(null, $e->getCode(), $e->getMessage() . " " . $e->getFile() . ": line " . $e->getLine(), $e->getCode()),
+        };
     }
 
     /**

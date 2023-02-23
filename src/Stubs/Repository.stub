@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class {module}Repository
  * @package App\{moduleContainer}\{{module}}\Repositories
  */
-class {module}Repository extends SnapRepository implements {module}Interface
+final class {module}Repository extends SnapRepository implements {module}Interface
 {
     /**
      * {module}Repository constructor.

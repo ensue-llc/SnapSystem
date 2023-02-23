@@ -8,7 +8,7 @@ use Ensue\Snap\Filters\SnapFilter;
  * Class {{module}}Controller
  * @package App\{moduleContainer}\{{module}}\Filters
  */
-class {{module}}Filter extends SnapFilter
+final class {{module}}Filter extends SnapFilter
 {
     /**
      * To do filter here

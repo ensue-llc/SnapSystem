@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Lang;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -16,12 +17,12 @@ trait SnapResponseTraits
 {
     protected bool $api = true;
 
-    public function responseOk($body, $codeText = 'ok', $messageCode = 'snap::snap.ok', array $headers = []): JsonResponse
+    public function responseOk(mixed $body, $codeText = 'ok', $messageCode = 'ok', array $headers = []): JsonResponse
     {
         return $this->nicoResponse($body, Response::HTTP_OK, $codeText, $messageCode, $headers);
     }
 
-    public function nicoResponse($body, int $status = Response::HTTP_OK, $codeText = 'OK', string $messageCode = 'snap::snap.ok', array $headers = []): JsonResponse
+    public function nicoResponse(mixed $body, int|string $status = Response::HTTP_OK, $codeText = 'OK', string $messageCode = 'ok', array $headers = []): JsonResponse
     {
         if ($body instanceof Collection) {
             if ($body->count() > 0) {
@@ -35,14 +36,14 @@ trait SnapResponseTraits
         return response()->json([
             'body' => $body,
             'status' => [
-                "message" => trans($messageCode),
+                "message" => $this->translateMessageCode($messageCode),
                 'code' => end($split),
                 'code_text' => $codeText,
             ]
         ], $status)->withHeaders($headers);
     }
 
-    public function validateStatusCode(int $code = 0): int
+    public function validateStatusCode(int|string $code = 0): int
     {
         $statusCode = array(
             100, 101, 102,
@@ -51,72 +52,91 @@ trait SnapResponseTraits
             400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 421, 422, 423, 424, 425, 426, 428, 429, 431, 451,
             500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511
         );
-        if (in_array($code, $statusCode)) {
+        if (in_array($code, $statusCode, true)) {
             return $code;
         }
 
         return 500;
     }
 
-    public function responseServerError($codeText = 'internal server error occured', string $code = 'snap::snap.internal_server_error', array $headers = []): JsonResponse
+    /**
+     * @param string $messageCode
+     * @return string
+     */
+    private function translateMessageCode(string $messageCode): string
+    {
+        if (Lang::has('snap.' . $messageCode)) {
+            return trans('snap.' . $messageCode);
+        }
+        if (Lang::has($messageCode)) {
+            return trans($messageCode);
+        }
+        if (Lang::has('snap::snap.' . $messageCode)) {
+            return trans('snap::snap.' . $messageCode);
+        }
+
+        return $messageCode;
+    }
+
+    public function responseServerError(string $codeText = 'internal server error occurred', string $code = 'internal_server_error', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_INTERNAL_SERVER_ERROR, $codeText, $code, $headers);
     }
 
-    public function responseError($body, int $status = Response::HTTP_INTERNAL_SERVER_ERROR, $codeText = 'server error', $messageCode = 'server_error', array $headers = []): JsonResponse
+    public function responseError(mixed $body, int $status = Response::HTTP_INTERNAL_SERVER_ERROR, $codeText = 'server error', $messageCode = 'server_error', array $headers = []): JsonResponse
     {
         return $this->nicoResponse($body, $status, $codeText, $messageCode, $headers);
     }
 
-    public function responseUnAuthorize(string $codeText = 'unauthorized', string $code = 'snap::snap.unauthorized', array $headers = []): JsonResponse
+    public function responseUnAuthorize(string $codeText = 'unauthorized', string $code = 'unauthorized', array $headers = []): JsonResponse
     {
         $split = explode('.', $code);
         return response()->json([
             'body' => null,
             'status' => [
-                "message" => trans($code),
+                "message" => $this->translateMessageCode($code),
                 'code' => end($split),
                 'code_text' => $codeText,
             ]
         ], Response::HTTP_UNAUTHORIZED)->withHeaders($headers);
     }
 
-    public function responseForbidden(string $codeText = 'forbidden', string $code = 'snap::snap.forbidden', array $headers = []): JsonResponse
+    public function responseForbidden(string $codeText = 'forbidden', string $code = 'forbidden', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_FORBIDDEN, $codeText, $code, $headers);
     }
 
-    public function responseNotFound(string $codeText = 'not found', string $code = 'snap::snap.not_found', array $headers = []): JsonResponse
+    public function responseNotFound(string $codeText = 'not found', string $code = 'not_found', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_NOT_FOUND, $codeText, $code, $headers);
     }
 
-    public function responseBadRequest(string $codeText = 'bad request', string $code = 'snap::snap.bad_request', array $headers = []): JsonResponse
+    public function responseBadRequest(string $codeText = 'bad request', string $code = 'bad_request', array $headers = []): JsonResponse
     {
         return $this->responseError(null, Response::HTTP_BAD_REQUEST, $codeText, $code, $headers);
     }
 
-    public function responsePreConditionFailed($body = '', string $codeText = 'precondition failed', string $code = 'snap::snap.precondition_failed', array $headers = []): JsonResponse
+    public function responsePreConditionFailed($body = '', string $codeText = 'precondition failed', string $code = 'precondition_failed', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_PRECONDITION_FAILED, $codeText, $code, $headers);
     }
 
-    public function responseConflict($body = null, string $codeText = 'conflict', string $code = 'snap::snap.conflict', array $headers = []): JsonResponse
+    public function responseConflict(mixed $body = null, string $codeText = 'conflict', string $code = 'conflict', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_CONFLICT, $codeText, $code, $headers);
     }
 
-    public function responseExpectationFailed($body = null, string $codeText = 'expectation failed', string $code = 'snap::snap.expectation_failed', array $headers = []): JsonResponse
+    public function responseExpectationFailed(mixed $body = null, string $codeText = 'expectation failed', string $code = 'expectation_failed', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_EXPECTATION_FAILED, $codeText, $code, $headers);
     }
 
-    public function responseValidationError($body = null, string $codeText = 'form validation failed', $code = 'snap::snap.form_validation_error', array $headers = []): JsonResponse
+    public function responseValidationError(mixed $body = null, string $codeText = 'form validation failed', $code = 'form_validation_error', array $headers = []): JsonResponse
     {
         return $this->responseError($body, Response::HTTP_EXPECTATION_FAILED, $codeText, $code, $headers);
     }
 
-    public function responseTooManyAttempts(string $codeText = 'too many request', string $code = 'snap::snap.too_many_request', array $headers = []): JsonResponse
+    public function responseTooManyAttempts(string $codeText = 'too many request', string $code = 'too_many_request', array $headers = []): JsonResponse
     {
         return $this->responseError(Null, Response::HTTP_TOO_MANY_REQUESTS, $codeText, $code, $headers);
     }

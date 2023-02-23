@@ -8,7 +8,7 @@ use Ensue\Snap\Requests\SnapRequest;
  * Class {module}CreateRequest
  * @package App\{moduleContainer}\{{module}}\Requests
  */
-class {module}CreateRequest extends SnapRequest
+final class {module}CreateRequest extends SnapRequest
 {
 
 }

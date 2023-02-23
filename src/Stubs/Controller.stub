@@ -13,13 +13,13 @@ use Ensue\Snap\Requests\SnapRequest;
  * Class {{module}}Controller
  * @package App\{moduleContainer}\{{module}}\Controllers
  */
-class {{module}}Controller extends SnapController
+final class {{module}}Controller extends SnapController
 {
     /**
      * {{module}}Controller constructor.
      * @param {module}Interface $repository
      */
-    public function __construct(private {module}Interface $repository)
+    public function __construct(private readonly {module}Interface $repository)
     {
     }
 

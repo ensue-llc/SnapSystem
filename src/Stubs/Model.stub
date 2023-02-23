@@ -8,7 +8,7 @@ use App\{system}\{module}\Database\Models\{module} as SnapModel;
  * Class {module}
  * @package App\{moduleContainer}\{{module}}\Database\Models
  */
-class {module} extends SnapModel
+final class {module} extends SnapModel
 {
 
 }

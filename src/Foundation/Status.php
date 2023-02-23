@@ -8,7 +8,6 @@
 
 namespace Ensue\Snap\Foundation;
 
-
 class Status
 {
     /**
