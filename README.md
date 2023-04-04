@@ -8,7 +8,7 @@ Since our package is not hosted in packagist. Open composer.json file and update
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://bitbucket.org/LYWL/snap.git"
+        "url": "https://bitbucket.org/LYWL/snap-system.git"
     }
 ]
 ```
