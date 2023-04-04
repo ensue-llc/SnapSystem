@@ -25,14 +25,14 @@ class SnapViewProvider extends BaseServiceProvider
     }
 
     /**
-     * @return array|null
+     * @return void
      */
-    protected function registerViewAndTranslations(): null|array
+    protected function registerViewAndTranslations(): void
     {
         $file = new Filesystem();
         $modulePath = $this->app['config']->get('nicoSystem.module');
         if (!$modulePath || !is_dir(app_path($modulePath))) {
-            return null;
+            return;
         }
         $modules = File::directories(app_path($modulePath));
         foreach ($modules as $module) {
