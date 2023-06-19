@@ -55,6 +55,7 @@ class SnapRouteProvider extends BaseProvider
     {
         $this->mapApiRoutes();
         $this->mapWebRoutes();
+        $this->registerPackageRoutes();
         parent::boot();
     }
 
@@ -99,5 +100,16 @@ class SnapRouteProvider extends BaseProvider
                 });
             }
         }
+    }
+
+    protected function registerPackageRoutes(): void
+    {
+        Route::group([
+            'as' => 'upload-file',
+            'prefix' => 'api/snap',
+            'namespace' => 'Ensue\Snap\Controllers',
+        ], function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        });
     }
 }

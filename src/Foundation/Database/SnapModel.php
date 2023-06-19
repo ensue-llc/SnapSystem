@@ -118,7 +118,7 @@ abstract class SnapModel extends Model
      */
     public function scopePublished(Builder $query, string $colName = 'status'): Builder
     {
-        return $query->where($colName, Status::STATUS_PUBLISHED);
+        return $query->where($colName, Status::STATUS_PUBLISHED->value);
     }
 
     /**
@@ -128,7 +128,7 @@ abstract class SnapModel extends Model
      */
     public function scopeUnpublished(Builder $query, string $colName = 'status'): Builder
     {
-        return $query->where($colName, Status::STATUS_UNPUBLISHED);
+        return $query->where($colName, Status::STATUS_UNPUBLISHED->value);
     }
 
     /**
