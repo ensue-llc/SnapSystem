@@ -109,7 +109,6 @@ class SnapRouteProvider extends BaseProvider
             'prefix' => 'api/snap',
             'namespace' => 'Ensue\Snap\Controllers',
         ], function () {
-            dd(__DIR__ . '/../routes/api.php');
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
     }
