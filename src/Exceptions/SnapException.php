@@ -11,6 +11,11 @@ use Ensue\Snap\Constants\SnapConstant;
 class SnapException extends \RuntimeException
 {
     /**
+     * @var int
+     */
+    protected $code = 500;
+
+    /**
      * @var string
      */
     protected string $respCode = SnapConstant::ERR_RUNTIME_ERROR;
@@ -18,22 +23,24 @@ class SnapException extends \RuntimeException
     /**
      * NicoException constructor.
      *
+     * @param string $message
      * @param string $respCode
      * @param mixed $respBody
      * @param int $code
      * @param \Exception|null $previous
      */
     public function __construct(
-        string $respCode = '',
+        string          $message = '',
+        string          $respCode = '',
         protected mixed $respBody = null,
-        int $code = 0,
-        \Exception $previous = null
+        int             $code = 0,
+        \Exception      $previous = null
     )
     {
         if ($respCode) {
             $this->respCode = $respCode;
         }
-        parent::__construct($respCode, $code, $previous);
+        parent::__construct($message, $code, $previous);
     }
 
     /**
