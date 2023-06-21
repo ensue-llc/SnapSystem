@@ -37,12 +37,13 @@ abstract class SnapRepository implements SnapCrudInterface
      */
     public function getList(array $params = [], bool $paginate = true, array $attributes = []): LengthAwarePaginator|Collection
     {
+        $perPage = Arr::get($params, 'per_page', $this->model->getPerPage());
         $builder = $this->attachOrderByQuery($params);
         $filter = $this->getFilter($builder);
 
         $filter?->attachFilterQuery($params);
 
-        if (Arr::get($params, 'all') === 1 || Arr::get($params, 'all') === '1') {
+        if ($perPage === 'all' || Arr::get($params, 'all') === 1 || Arr::get($params, 'all') === '1') {
             $paginate = false;
         }
 
