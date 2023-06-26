@@ -48,7 +48,7 @@ abstract class SnapFilter
      */
     public function status(string $status = ''): void
     {
-        if (!is_null($status)) {
+        if ($status !== '') {
             $this->builder->where('status', $status);
         }
     }

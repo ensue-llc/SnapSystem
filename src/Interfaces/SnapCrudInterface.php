@@ -3,6 +3,8 @@
 namespace Ensue\Snap\Interfaces;
 
 use Ensue\Snap\Foundation\Database\SnapModel;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 interface SnapCrudInterface
 {
@@ -17,7 +19,7 @@ interface SnapCrudInterface
      * @param bool $paginate
      * @param array $attributes
      */
-    public function getList(array $params = [], bool $paginate = true, array $attributes = []);
+    public function getList(array $params = [], bool $paginate = true, array $attributes = []): LengthAwarePaginator|Collection;
 
     /**
      * @param string $id
