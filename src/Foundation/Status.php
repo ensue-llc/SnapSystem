@@ -12,8 +12,6 @@ use Ensue\Snap\Foundation\Interfaces\HasOption;
 
 enum Status : int implements HasOption
 {
-    use HasEnumOptions;
-
     /**
      * The suspended status
      */
@@ -28,4 +26,15 @@ enum Status : int implements HasOption
      * The published status
      */
     case STATUS_PUBLISHED = 2;
+
+    /**
+     * @return Status[]
+     */
+    public static function options(): array
+    {
+        return [
+            self::STATUS_PUBLISHED->value,
+            self::STATUS_UNPUBLISHED->value,
+        ];
+    }
 }
