@@ -14,7 +14,7 @@ trait EditorLogs
     /**
      * @var bool
      */
-    protected static bool $hasDeletorLog = true;
+    protected static bool $hasDeleterLog = true;
     /**
      * @var bool
      */
@@ -72,7 +72,7 @@ trait EditorLogs
             }
         });
 
-        if (static::$hasDeletorLog) {
+        if (static::$hasDeleterLog) {
             static::deleting(function ($model) {
                 $self = new static();
                 $editor = $self->getEditor();

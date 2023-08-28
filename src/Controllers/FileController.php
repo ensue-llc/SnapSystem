@@ -2,13 +2,16 @@
 
 namespace Ensue\Snap\Controllers;
 
+use Ensue\Snap\Enums\FileTypeEnum;
 use Ensue\Snap\Event\FileUpload;
+use Ensue\Snap\Foundation\FileUpload\Upload;
 use Ensue\Snap\Requests\FileRequest;
 use Ensue\Snap\Requests\MultipleFileRequest;
 use Illuminate\Http\JsonResponse;
 
 class FileController extends SnapController
 {
+    use Upload;
     /**
      * @param FileRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -17,7 +20,7 @@ class FileController extends SnapController
     {
         $type = $request->get('type');
         $result = $this->upload($request);
-        if ($type === 'document') {
+        if ($type === FileTypeEnum::DOCUMENT->value) {
             event(new FileUpload($request->file('file')->getClientOriginalName(), $result['path']));
         }
         return $this->responseOk($result);
@@ -38,7 +41,7 @@ class FileController extends SnapController
             $response = $this->uploadFile($file);
             $response['filename'] = $fileName;
             $result[] = $response;
-            if ($type === 'document') {
+            if ($type ===  FileTypeEnum::DOCUMENT->value) {
                 event(new FileUpload($fileName, $result[$key]['path']));
             }
         }

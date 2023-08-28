@@ -14,7 +14,7 @@ use Ensue\Snap\Foundation\Database\SnapModel;
 use Ensue\Snap\Foundation\Status;
 use Ensue\Snap\Interfaces\SnapCrudInterface;
 
-abstract class SnapRepository implements SnapCrudInterface
+abstract class SnapRepositoryInterface implements SnapCrudInterface
 {
     /**
      * @var array

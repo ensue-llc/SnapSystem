@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 abstract class SnapAppModel extends SnapModel
 {
-    use SoftDeletes, EditorLogs, HasFactory;
+    use SoftDeletes;
+    use EditorLogs;
+    use HasFactory;
 
     /**
      * Hidden attributes

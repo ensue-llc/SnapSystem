@@ -3,10 +3,10 @@
 namespace Ensue\Snap\Event;
 
 
-class FileUpload
+readonly class FileUpload
 {
-    public function __construct(public readonly string $orginalName,
-                                public readonly string $hashValue)
+    public function __construct(public string $originalName,
+                                public string $hashValue)
     {
     }
 }

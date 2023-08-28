@@ -93,7 +93,7 @@ if (!function_exists('subdomain_url')) {
      * Get subdomain url for the given url
      * @param $domain
      * @param  $url
-     * @param boolean $domainNameOnly If true protocal will be removed from the name
+     * @param boolean $domainNameOnly If true protocol will be removed from the name
      * @return string
      */
     function subdomain_url($domain, $url, $domainNameOnly = false): string

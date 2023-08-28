@@ -1,8 +1,9 @@
 {
     "name": "ensue/snap",
-    "description": "Base system architecture for the laravel project",
-    "keywords": ["ensue", "snap"],
+    "description": "Modular architecture build on top of laravel for any laravel project",
+    "keywords": ["ensue", "snap","module","modular","laravel","archtecture"],
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Ensue\\Snap\\": "src/"
@@ -20,8 +21,13 @@
     ],
     "require": {
         "php": "^8.2",
+        "ext-zip": "*",
+        "ext-gd": "*",
+        "ext-pdo": "*",
+        "composer-runtime-api": "^2.2",
         "laravel/framework": "^10.0",
-        "intervention/image": "^2.7"
+        "intervention/image": "^2.7",
+        "laravel/helpers": "^1.6"
     },
     "extra": {
         "laravel": {
@@ -30,5 +36,6 @@
             ]
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

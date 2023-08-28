@@ -8,9 +8,9 @@
 
 namespace Ensue\Snap\Foundation;
 
-use Ensue\Snap\Foundation\Interfaces\HasOption;
+use Ensue\Snap\Foundation\Interfaces\HasOptionInterface;
 
-enum Status : int implements HasOption
+enum Status : int implements HasOptionInterface
 {
     /**
      * The suspended status

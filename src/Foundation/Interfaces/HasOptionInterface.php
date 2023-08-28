@@ -2,7 +2,7 @@
 
 namespace Ensue\Snap\Foundation\Interfaces;
 
-interface HasOption
+interface HasOptionInterface
 {
     public static function options(): array;
 }
