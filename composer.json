@@ -17,6 +17,10 @@
         {
             "name": "Bipin Maharjan",
             "email": "bipin.maharjan@ensue.us"
+        },
+        {
+            "name": "Amar Lamichhane",
+            "email": "amar.lamichhane@ensue.us"
         }
     ],
     "require": {
