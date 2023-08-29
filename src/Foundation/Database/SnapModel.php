@@ -51,6 +51,13 @@ abstract class SnapModel extends Model
     protected $perPage = 16;
 
     /**
+     * @var string[]
+     */
+    protected $casts = [
+        'status' => Status::class
+    ];
+
+    /**
      * @return array
      */
     public function sortableColumns(): array
@@ -118,7 +125,7 @@ abstract class SnapModel extends Model
      */
     public function scopePublished(Builder $query, string $colName = 'status'): Builder
     {
-        return $query->where($colName, Status::STATUS_PUBLISHED->value);
+        return $query->where($colName, Status::Published);
     }
 
     /**
@@ -128,7 +135,7 @@ abstract class SnapModel extends Model
      */
     public function scopeUnpublished(Builder $query, string $colName = 'status'): Builder
     {
-        return $query->where($colName, Status::STATUS_UNPUBLISHED->value);
+        return $query->where($colName, Status::Unpublished);
     }
 
     /**

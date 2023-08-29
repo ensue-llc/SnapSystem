@@ -16,6 +16,6 @@ class StatusPublishedScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->whereStatus(Status::STATUS_PUBLISHED->value);
+        $builder->whereStatus(Status::Published);
     }
 }

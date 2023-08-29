@@ -51,7 +51,7 @@ abstract class SnapAppModel extends SnapModel
      */
     public function isEditable(): bool
     {
-        return $this->getAttribute('status') !== Status::STATUS_SUSPENDED->value;
+        return $this->getAttribute('status') !== Status::Suspended->value;
     }
 
     /**

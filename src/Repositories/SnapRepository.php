@@ -155,7 +155,7 @@ abstract class SnapRepository implements SnapCrudInterface
     {
         if ($id) {
             $model = $this->getQuery()->findOrFail($id);
-            if ($model->getAttribute('status') === Status::STATUS_SUSPENDED->value) {
+            if ($model->getAttribute('status') === Status::Suspended) {
                 throw new SnapBadRequestException("Resource is not editable", SnapConstant::ERR_SUSPENDED_MODEL_NOT_EDITABLE);
             }
         } else {
@@ -199,11 +199,11 @@ abstract class SnapRepository implements SnapCrudInterface
         } else {
             throw new ModelNotFoundException();
         }
-        if ($model->status == Status::STATUS_UNPUBLISHED->value) {
-            $model->status = Status::STATUS_PUBLISHED->value;
-        } elseif ($model->status == Status::STATUS_PUBLISHED->value) {
-            $model->status = Status::STATUS_UNPUBLISHED->value;
-        } elseif ($model->status == Status::STATUS_SUSPENDED->value) {
+        if ($model->status == Status::Unpublished) {
+            $model->status = Status::Published;
+        } elseif ($model->status == Status::Published) {
+            $model->status = Status::Unpublished;
+        } elseif ($model->status == Status::Suspended) {
             throw new SnapBadRequestException("Cannot modify the model because the status is suspended", SnapConstant::ERR_SUSPENDED_MODEL_NOT_EDITABLE);
         }
         $this->dispatchEvent('updating', $model);

@@ -16,6 +16,6 @@ class StatusUnpublishedScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->whereStatus(Status::STATUS_UNPUBLISHED->value);
+        $builder->whereStatus(Status::Unpublished->value);
     }
 }

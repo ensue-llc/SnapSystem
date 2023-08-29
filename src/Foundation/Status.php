@@ -15,17 +15,17 @@ enum Status : int implements HasOptionInterface
     /**
      * The suspended status
      */
-    case STATUS_SUSPENDED = 0;
+    case Suspended = 0;
 
     /**
      * The unpublished status
      */
-    case STATUS_UNPUBLISHED = 1;
+    case Unpublished = 1;
 
     /**
      * The published status
      */
-    case STATUS_PUBLISHED = 2;
+    case Published = 2;
 
     /**
      * @return Status[]
@@ -33,8 +33,8 @@ enum Status : int implements HasOptionInterface
     public static function options(): array
     {
         return [
-            self::STATUS_PUBLISHED->value,
-            self::STATUS_UNPUBLISHED->value,
+            self::Published->value,
+            self::Unpublished->value,
         ];
     }
 }
