@@ -190,7 +190,7 @@ abstract class SnapRepository implements SnapCrudInterface
      * @param string|SnapModel $id
      * @return SnapModel
      */
-    public function toggleStatus(string|SnapModel $id): SnapModel
+    public function toggleStatus(int|SnapModel $id): SnapModel
     {
         if (is_numeric($id)) {
             $model = $this->getById($id);
