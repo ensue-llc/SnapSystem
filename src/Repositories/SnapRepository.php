@@ -112,11 +112,11 @@ abstract class SnapRepository implements SnapCrudInterface
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @param array $attributes
      * @return bool
      */
-    public function destroy(string $id, array $attributes = []): bool
+    public function destroy(int $id, array $attributes = []): bool
     {
         $model = $this->getQuery()->findOrFail($id);
         $this->dispatchEvent('deleting', $model);
@@ -177,11 +177,11 @@ abstract class SnapRepository implements SnapCrudInterface
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @param array $attributes
      * @return SnapModel
      */
-    public function update(string $id, array $attributes): SnapModel
+    public function update(int $id, array $attributes): SnapModel
     {
         return $this->save($attributes, $id);
     }
@@ -213,22 +213,22 @@ abstract class SnapRepository implements SnapCrudInterface
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @param array $attributes
      * @return SnapModel
      */
-    public function getById(string $id, array $attributes = []): SnapModel
+    public function getById(int $id, array $attributes = []): SnapModel
     {
         return $this->getQuery()->findOrFail($id);
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @param $field
      * @param $value
      * @return SnapModel
      */
-    protected function updateSingle(string $id, $field, $value): SnapModel
+    protected function updateSingle(int $id, $field, $value): SnapModel
     {
         $model = $this->getQuery()->findOrFail($id);
         $model->$field = $value;

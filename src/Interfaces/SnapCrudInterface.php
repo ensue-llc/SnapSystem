@@ -9,10 +9,10 @@ use Illuminate\Support\Collection;
 interface SnapCrudInterface
 {
     /**
-     * @param string $id
+     * @param int $id
      * @param array $attributes
      */
-    public function getById(string $id, array $attributes = []): SnapModel;
+    public function getById(int $id, array $attributes = []): SnapModel;
 
     /**
      * @param array $params
@@ -22,10 +22,10 @@ interface SnapCrudInterface
     public function getList(array $params = [], bool $paginate = true, array $attributes = []): LengthAwarePaginator|Collection;
 
     /**
-     * @param string $id
+     * @param int $id
      * @param array $attributes
      */
-    public function destroy(string $id, array $attributes = []): bool;
+    public function destroy(int $id, array $attributes = []): bool;
 
     /**
      * @param array $attributes
@@ -33,13 +33,13 @@ interface SnapCrudInterface
     public function create(array $attributes): SnapModel;
 
     /**
-     * @param string $id
+     * @param int $id
      * @param array $attributes
      */
-    public function update(string $id, array $attributes): SnapModel;
+    public function update(int $id, array $attributes): SnapModel;
 
     /**
-     * @param string $id
+     * @param int $id
      */
-    public function toggleStatus(string $id): SnapModel;
+    public function toggleStatus(int $id): SnapModel;
 }
