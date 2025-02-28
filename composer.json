@@ -29,9 +29,9 @@
         "ext-gd": "*",
         "ext-pdo": "*",
         "composer-runtime-api": "^2.2",
-        "laravel/framework": "^11.30",
+        "laravel/framework": "^12.0",
         "intervention/image": "^2.7",
-        "laravel/helpers": "^1.6"
+        "laravel/helpers": "^1.7"
     },
     "extra": {
         "laravel": {
