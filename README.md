@@ -8,10 +8,10 @@ Install the package using Composer. Run the following command:
 composer require ensue/snap
 ```
 ### Prerequisites
-| Package | Minimum Version |
-|---------|-----------------|
-| Laravel | 10              |
-| php     | 8.2             |
+| Package | Minimum Version | Supported Versions |
+|---------|-----------------|--------------------|
+| Laravel | 12              | 12, 13             |
+| php     | 8.2             | 8.2, 8.3, 8.4      |
 
 ### Exception handler
 In your **Handler.php** located at **app/Exceptions/Handler.php**, follow these steps: 
