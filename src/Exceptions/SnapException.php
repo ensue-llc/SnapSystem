@@ -34,7 +34,7 @@ class SnapException extends \RuntimeException
         string          $respCode = '',
         protected mixed $respBody = null,
         int             $code = 0,
-        \Exception      $previous = null
+        ?\Exception     $previous = null
     )
     {
         if ($respCode) {

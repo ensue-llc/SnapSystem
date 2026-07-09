@@ -145,7 +145,7 @@ abstract class SnapModel extends Model
      * @param null $localKey
      * @return HasOne
      */
-    public function hasOneExtended($related, Closure $closure = null, $foreignKey = null, $localKey = null): HasOne
+    public function hasOneExtended($related, ?Closure $closure = null, $foreignKey = null, $localKey = null): HasOne
     {
         $foreignKey = $foreignKey ?: $this->getForeignKey();
 
@@ -169,7 +169,7 @@ abstract class SnapModel extends Model
      * @param null $localKey
      * @return HasManyExtended
      */
-    public function hasManyExtended($related, Closure $closure = null, $foreignKey = null, $localKey = null): HasManyExtended
+    public function hasManyExtended($related, ?Closure $closure = null, $foreignKey = null, $localKey = null): HasManyExtended
     {
         $foreignKey = $foreignKey ?: $this->getForeignKey();
 
