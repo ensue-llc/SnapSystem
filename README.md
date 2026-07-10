@@ -11,7 +11,7 @@ composer require ensue/snap
 | Package | Minimum Version | Supported Versions |
 |---------|-----------------|--------------------|
 | Laravel | 12              | 12, 13             |
-| php     | 8.2             | 8.2, 8.3, 8.4      |
+| php     | 8.3             | 8.3, 8.4           |
 
 ### Exception handler
 In your **Handler.php** located at **app/Exceptions/Handler.php**, follow these steps: 

@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Laravel\Facades\Image;
 
 /**
  * Trait Upload
@@ -79,18 +79,14 @@ trait Upload
 
         if ($createThumb === true) {
             try {
-                $image = Image::make($file);
-                $ratio = $image->height() / $image->width();
-                $width = config('fileupload.thumb_width', 100);
-                $thumb = $image->resize($width, $ratio * $width);
+                $image = Image::decodeSplFileInfo($file);
+                $width = (int) config('fileupload.thumb_width', 100);
+                $height = (int) round($image->height() / $image->width() * $width);
+                $thumb = $image->resize($width, $height);
 
                 $tp = config('fileupload.temp_dir_folder') . '/' . config('fileupload.image_thumb_directory') . '/' . filename_from_path($path, config('fileupload.thumb_suffix'));
 
-                if (config('filesystems.default', 'local') === 'local') {
-                    Storage::put($tp, $image, $visibility);
-                } else {
-                    $thumbPathInfo = PHP_OS === "WINNT" ? pathinfo($thumb->basePath(), PATHINFO_EXTENSION) : $thumb->basePath();
-                    Storage::put($tp, $thumb->save($thumbPathInfo, 100));                }
+                Storage::put($tp, (string) $thumb->encode(), $visibility);
                 $thumbPath = Storage::url($tp);
             } catch (Exception $exception) {
                 $thumbPath = null;
